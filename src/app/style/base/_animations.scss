@@ -1,0 +1,128 @@
+@keyframes moveInLeft {
+	0% {
+		opacity: 0;
+		transform: perspective(20rem) translateZ(-2rem) translateX(-2rem);
+	}
+
+	25% {
+		opacity: 0.25;
+		transform: perspective(20rem) translateZ(-2rem) translateX(-4rem);
+	}
+
+	50% {
+		opacity: 0.5;
+		transform: perspective(20rem) translateZ(0) translateX(-4rem);
+	}
+
+	100% {
+		opacity: 1;
+		transform: perspective(0rem) translate3d(0, 0, 0);
+	}
+}
+
+@keyframes moveInRight {
+	0% {
+		opacity: 0;
+
+		transform: perspective(20rem) translateZ(-2rem) translateX(1rem);
+	}
+
+	25% {
+		opacity: 0.25;
+		transform: perspective(20rem) translateZ(-2rem) translateX(3rem);
+	}
+
+	50% {
+		opacity: 0.5;
+		transform: perspective(20rem) translateZ(0) translateX(3rem);
+	}
+
+	100% {
+		opacity: 1;
+		transform: perspective(0rem) translate3d(0, 0, 0);
+	}
+}
+
+@keyframes moveOutLeft {
+	0% {
+		opacity: 1;
+		transform: perspective(0rem) translate3d(0, 0, 0);
+	}
+
+	25% {
+		opacity: 0.5;
+		transform: perspective(20rem) translateZ(0) translateX(-4rem);
+	}
+
+	50% {
+		opacity: 0.25;
+		transform: perspective(20rem) translateZ(-2rem) translateX(-4rem);
+	}
+
+	100% {
+		opacity: 0;
+		transform: perspective(20rem) translateZ(-2rem) translateX(-2rem);
+	}
+}
+
+@keyframes moveOutRight {
+	0% {
+		opacity: 1;
+		transform: perspective(0rem) translate3d(0, 0, 0);
+	}
+
+	25% {
+		opacity: 0.5;
+		transform: perspective(20rem) translateZ(0) translateX(3rem);
+	}
+
+	50% {
+		opacity: 0.25;
+		transform: perspective(20rem) translateZ(-2rem) translateX(3rem);
+	}
+
+	100% {
+		opacity: 0;
+
+		transform: perspective(20rem) translateZ(-2rem) translateX(1rem);
+	}
+}
+
+@keyframes moveInBottom {
+	0% {
+		opacity: 0;
+		transform: translatey(3rem);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes slideUp {
+	0% {
+		transform: translateY(40rem);
+	}
+	100% {
+		transform: translateY(0);
+	}
+}
+
+@keyframes slideRight {
+	0% {
+		transform: translateX(-40rem);
+	}
+	100% {
+		transform: translateX(0);
+	}
+}
+
+@keyframes slideLeft {
+	0% {
+		transform: translateX(0rem);
+	}
+	100% {
+		transform: translateX(-40rem);
+	}
+}

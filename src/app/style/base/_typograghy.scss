@@ -1,0 +1,33 @@
+body {
+	font-family: "Roboto", sans-serif;
+	font-weight: 400;
+	/* font-size: 16px; */
+	line-height: 1.7;
+	color: $color-black;
+}
+
+.heading-primary {
+}
+
+.heading-secondary {
+}
+
+.heading-tertiary {
+}
+
+.paragraph {
+	font-size: $default-font-size;
+	&-danger {
+		color: $color-red;
+	}
+}
+
+.link {
+	color: $link-color;
+	text-decoration: none;
+
+	&:hover {
+		color: darken($color: $link-color, $amount: 10);
+		text-decoration: underline;
+	}
+}

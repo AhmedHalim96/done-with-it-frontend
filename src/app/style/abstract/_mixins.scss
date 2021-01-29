@@ -1,0 +1,68 @@
+@mixin center {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+@mixin partial-line-after {
+	content: "";
+	border: 1px solid $primary-color;
+	width: 10em;
+	display: inline-block;
+	margin-top: 3rem;
+	@include center;
+}
+
+@mixin flex-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+@mixin scroller($color) {
+	overflow-y: scroll;
+	scrollbar-color: $color $color;
+	scrollbar-width: thin;
+}
+
+@mixin scroller-hovered($color) {
+	scrollbar-color: lighten($color, 20) lighten($color, 5);
+}
+
+// Media Query Manager
+
+@mixin respond($breakpoint) {
+	@if $breakpoint == wide-desktop {
+		@media only screen and (max-width: 112.5em) {
+			@content;
+		} // 1800px
+	}
+	@if $breakpoint == tab-land {
+		@media only screen and (max-width: 75em) {
+			@content;
+		} // 1200px
+	}
+	@if $breakpoint == tab-port {
+		@media only screen and (max-width: 56.25em) {
+			@content;
+		} // 900px
+	}
+	@if $breakpoint == phone-land {
+		@media only screen and (max-width: 52.5em) {
+			@content;
+		} // 750px
+	}
+
+	@if $breakpoint == phone-port {
+		@media only screen and (max-width: 37.5em) {
+			@content;
+		} // 600px
+	}
+
+	@if $breakpoint == tall-screens {
+		@media only screen and (min-height: 62.5em) {
+			@content;
+		} //1200px
+	}
+}
