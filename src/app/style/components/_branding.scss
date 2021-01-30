@@ -1,0 +1,23 @@
+.branding {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	@include no-selection;
+
+	&__logo {
+		width: 10rem;
+	}
+
+	&__text {
+		font-size: 4rem;
+		color: darken($color: $primary-color, $amount: 10);
+		-webkit-text-stroke-width: 0.1rem;
+		-webkit-text-stroke-color: $color-light-grey;
+	}
+
+	&__slogan {
+		color: $color-black;
+		margin-top: -1rem;
+	}
+}
