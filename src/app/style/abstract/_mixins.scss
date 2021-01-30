@@ -30,6 +30,12 @@
 	scrollbar-color: lighten($color, 20) lighten($color, 5);
 }
 
+@mixin no-selection {
+	-webkit-user-select: none; /* Chrome all / Safari all */
+	-moz-user-select: none; /* Firefox all */
+	-ms-user-select: none; /* IE 10+ */
+	user-select: none; /* Likely future */
+}
 // Media Query Manager
 
 @mixin respond($breakpoint) {
