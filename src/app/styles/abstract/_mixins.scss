@@ -36,8 +36,19 @@
 	-ms-user-select: none; /* IE 10+ */
 	user-select: none; /* Likely future */
 }
-// Media Query Manager
 
+@mixin page-center-box {
+	background-color: rgba($color: $color-white, $alpha: 0.5);
+	border: 0.3rem solid $color-white;
+	border-radius: 1rem;
+	box-shadow: 0.2rem 0.2rem 0.2rem 0.4rem rgba($color-black, 0.3);
+	min-width: 40rem;
+	margin-bottom: 1rem;
+	margin-top: 1rem;
+	padding: 2rem;
+}
+
+// Media Query Manager
 @mixin respond($breakpoint) {
 	@if $breakpoint == wide-desktop {
 		@media only screen and (max-width: 112.5em) {
