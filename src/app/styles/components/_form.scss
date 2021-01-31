@@ -1,12 +1,12 @@
 .form {
 	margin-top: 1rem;
 	&__group {
-		margin: 1rem 0;
+		display: block;
 	}
 
 	&__input {
 		min-width: 20rem;
-		border: 0.1rem solid $primary-color;
+		border: 0.1rem solid $secondary-color;
 		padding: 1rem;
 		border-radius: 0.5rem;
 
@@ -16,6 +16,9 @@
 
 		&-block {
 			width: 100%;
+		}
+		&-danger {
+			border: 0.1rem solid $color-red;
 		}
 	}
 
@@ -28,6 +31,6 @@
 
 	&__errorMessage {
 		color: $color-red;
-		font-size: $default-font-size;
+		font-size: 1.2rem;
 	}
 }
