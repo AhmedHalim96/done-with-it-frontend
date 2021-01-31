@@ -10,7 +10,9 @@ const FormField = ({ name, type, label, className }) => {
 				{label}:
 			</label>
 			<Field
-				className={`form__input ${className}`}
+				className={`form__input ${className} ${
+					touched[name] && errors[name] ? "form__input-danger" : "u-mb-2"
+				}`}
 				name={name}
 				type={type}
 				id={name}
