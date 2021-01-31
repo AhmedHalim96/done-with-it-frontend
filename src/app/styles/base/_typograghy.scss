@@ -17,6 +17,7 @@ body {
 
 .paragraph {
 	font-size: $default-font-size;
+	color: $color-black;
 	&-danger {
 		color: $color-red;
 	}
