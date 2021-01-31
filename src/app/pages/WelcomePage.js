@@ -10,7 +10,7 @@ const WelcomePage = () => {
 		<div
 			className="welcome"
 			style={{
-				backgroundImage: "url(" + settings.assetsUrl + "/welcome_bg.jpg)",
+				backgroundImage: "url(" + settings.assetsUrl + "/bg.jpg)",
 			}}
 		>
 			<div className="welcome__centerBox">
