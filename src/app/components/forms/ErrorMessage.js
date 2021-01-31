@@ -1,7 +1,7 @@
 import React from "react";
 
 const ErrorMessage = ({ error, visible }) => {
-	if (!visible) return null;
+	if (!visible || !error) return null;
 	return <p className="form__errorMessage">* {error}</p>;
 };
 
