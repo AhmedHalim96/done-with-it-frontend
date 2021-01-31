@@ -1,0 +1,32 @@
+.form {
+	&__group {
+		margin: 1rem 0;
+	}
+
+	&__input {
+		min-width: 20rem;
+		border: 0.1rem solid $primary-color;
+		padding: 1rem;
+		border-radius: 0.5rem;
+
+		&:focus {
+			outline: none;
+		}
+
+		&-block {
+			width: 100%;
+		}
+	}
+
+	&__label {
+		display: block;
+		color: $color-black;
+		font-size: 1.8rem;
+		@include no-selection;
+	}
+
+	&__errorMessage {
+		color: $color-red;
+		font-size: $default-font-size;
+	}
+}
