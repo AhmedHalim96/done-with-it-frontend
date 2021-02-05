@@ -5,7 +5,6 @@ import Branding from "../components/Branding";
 import Form from "../components/forms/Form";
 import FormField from "../components/forms/FormField";
 import Submit from "../components/forms/Submit";
-import settings from "../config/settings";
 
 const valdiationSchema = Yup.object().shape({
 	email: Yup.string().email().label("Email").required(),
@@ -14,12 +13,7 @@ const valdiationSchema = Yup.object().shape({
 
 const LoginPage = () => {
 	return (
-		<div
-			className="login"
-			style={{
-				backgroundImage: "url(" + settings.assetsUrl + "/bg.jpg)",
-			}}
-		>
+		<div className="login">
 			<div className="login__centerBox">
 				<Branding />
 				<Form
