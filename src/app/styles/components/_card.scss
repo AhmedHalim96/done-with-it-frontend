@@ -1,8 +1,30 @@
 .card {
-	padding: 1rem;
-	border: 0.2rem solid $primary-color;
-	border-radius: $corner-radius;
+	background-color: $color-white;
+	border: 0.2rem solid $color-white;
+	border-radius: 1rem;
+	display: flex;
+	flex-direction: column;
+	color: $color-black;
+
+	&__image {
+		align-self: center;
+		border-top-left-radius: 1rem;
+		border-top-right-radius: 1rem;
+		width: 100%;
+	}
+
+	&__body {
+		padding: 0.5rem;
+	}
 
 	&__title {
+		font-size: 2rem;
+	}
+
+	&__subtitle {
+		margin-top: -0.6rem;
+		margin-left: 0.4rem;
+		font-size: 1rem;
+		color: $color-green;
 	}
 }
