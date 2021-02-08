@@ -8,7 +8,7 @@ const listings = [
 		description:
 			" Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam soluta libero vitae magni, saepe deleniti non voluptate quaerat veniam? Fuga ipsam incidunt deleniti doloremque quis hic est in doloribus officia?",
 		price: 100,
-		photo: "http://www.donewithit.com/storage/listings/couch-photo.jpg",
+		photo: "http://192.168.1.111:8000/storage/listings/couch-photo.jpg",
 	},
 	{
 		id: 2,
@@ -16,7 +16,7 @@ const listings = [
 		description:
 			" Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam soluta libero vitae magni, saepe deleniti non voluptate quaerat veniam? Fuga ipsam incidunt deleniti doloremque quis hic est in doloribus officia?",
 		price: 40,
-		photo: "http://www.donewithit.com/storage/listings/jacket-photo.jpg",
+		photo: "http://192.168.1.111:8000/storage/listings/jacket-photo.jpg",
 	},
 	{
 		id: 3,
@@ -24,7 +24,7 @@ const listings = [
 		description:
 			" Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam soluta libero vitae magni, saepe deleniti non voluptate quaerat veniam? Fuga ipsam incidunt deleniti doloremque quis hic est in doloribus officia?",
 		price: 100,
-		photo: "http://www.donewithit.com/storage/listings/couch-photo.jpg",
+		photo: "http://192.168.1.111:8000/storage/listings/couch-photo.jpg",
 	},
 	{
 		id: 4,
@@ -32,7 +32,7 @@ const listings = [
 		description:
 			" Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam soluta libero vitae magni, saepe deleniti non voluptate quaerat veniam? Fuga ipsam incidunt deleniti doloremque quis hic est in doloribus officia?",
 		price: 40,
-		photo: "http://www.donewithit.com/storage/listings/jacket-photo.jpg",
+		photo: "http://192.168.1.111:8000/storage/listings/jacket-photo.jpg",
 	},
 	{
 		id: 5,
@@ -40,7 +40,7 @@ const listings = [
 		description:
 			" Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam soluta libero vitae magni, saepe deleniti non voluptate quaerat veniam? Fuga ipsam incidunt deleniti doloremque quis hic est in doloribus officia?",
 		price: 100,
-		photo: "http://www.donewithit.com/storage/listings/couch-photo.jpg",
+		photo: "http://192.168.1.111:8000/storage/listings/couch-photo.jpg",
 	},
 	{
 		id: 6,
@@ -48,7 +48,7 @@ const listings = [
 		description:
 			" Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam soluta libero vitae magni, saepe deleniti non voluptate quaerat veniam? Fuga ipsam incidunt deleniti doloremque quis hic est in doloribus officia?",
 		price: 40,
-		photo: "http://www.donewithit.com/storage/listings/jacket-photo.jpg",
+		photo: "http://192.168.1.111:8000/storage/listings/jacket-photo.jpg",
 	},
 	{
 		id: 7,
@@ -56,7 +56,7 @@ const listings = [
 		description:
 			" Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam soluta libero vitae magni, saepe deleniti non voluptate quaerat veniam? Fuga ipsam incidunt deleniti doloremque quis hic est in doloribus officia?",
 		price: 100,
-		photo: "http://www.donewithit.com/storage/listings/couch-photo.jpg",
+		photo: "http://192.168.1.111:8000/storage/listings/couch-photo.jpg",
 	},
 	{
 		id: 8,
@@ -64,7 +64,7 @@ const listings = [
 		description:
 			" Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam soluta libero vitae magni, saepe deleniti non voluptate quaerat veniam? Fuga ipsam incidunt deleniti doloremque quis hic est in doloribus officia?",
 		price: 40,
-		photo: "http://www.donewithit.com/storage/listings/jacket-photo.jpg",
+		photo: "http://192.168.1.111:8000/storage/listings/jacket-photo.jpg",
 	},
 ];
 
