@@ -1,0 +1,40 @@
+.listingDetails {
+	background: $color-white;
+	color: $color-black;
+	font-size: $default-font-size;
+	height: 100%;
+	min-height: 100vh;
+	overflow-x: hidden;
+	padding: 1rem;
+	width: 100%;
+
+	&__addToCart {
+		font-weight: normal;
+		margin-left: auto;
+		word-spacing: -0.1rem;
+	}
+
+	&__description {
+	}
+
+	&__photo {
+		width: 100%;
+	}
+
+	&__price {
+		color: $color-green;
+		font-weight: normal;
+	}
+
+	&__title {
+		display: inline-block;
+		font-size: 2rem;
+		font-weight: 500;
+		margin-right: 0.5rem;
+	}
+
+	&__top {
+		display: flex;
+		align-items: baseline;
+	}
+}
