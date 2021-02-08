@@ -1,7 +1,7 @@
 const settings = {
 	dev: {
-		apiUrl: "http://127.0.0.1:8000/api",
-		assetsUrl: "http://127.0.0.1:8000/storage/assets",
+		apiUrl: "http://192.168.1.111:8000/api",
+		assetsUrl: "http://192.168.1.111:8000/storage/assets",
 	},
 };
 
