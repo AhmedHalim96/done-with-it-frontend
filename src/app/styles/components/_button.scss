@@ -38,12 +38,15 @@
 	&-outline {
 		background: transparent;
 		padding: 0;
+		&:hover {
+			box-shadow: 0 0 0;
+			text-decoration: underline;
+		}
 		&.button-primary {
 			color: $primary-color;
 			&:hover {
 				background-color: transparent;
 				color: darken($color: $primary-color, $amount: 5);
-				text-decoration: underline;
 			}
 		}
 
@@ -52,7 +55,6 @@
 			&:hover {
 				background-color: transparent;
 				color: darken($color: $secondary-color, $amount: 5);
-				text-decoration: underline;
 			}
 		}
 	}
