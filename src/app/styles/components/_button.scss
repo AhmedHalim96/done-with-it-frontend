@@ -35,4 +35,25 @@
 			background-color: darken($color: $secondary-color, $amount: 5);
 		}
 	}
+	&-outline {
+		background: transparent;
+		padding: 0;
+		&.button-primary {
+			color: $primary-color;
+			&:hover {
+				background-color: transparent;
+				color: darken($color: $primary-color, $amount: 5);
+				text-decoration: underline;
+			}
+		}
+
+		&.button-secondary {
+			color: $secondary-color;
+			&:hover {
+				background-color: transparent;
+				color: darken($color: $secondary-color, $amount: 5);
+				text-decoration: underline;
+			}
+		}
+	}
 }
