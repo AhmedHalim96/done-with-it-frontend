@@ -1,10 +1,10 @@
 .card {
 	background-color: $color-white;
-	border: 0.2rem solid $color-white;
+	border: 0.2rem solid darken($color: $color-white, $amount: 10);
 	border-radius: 1rem;
+	color: $color-black;
 	display: flex;
 	flex-direction: column;
-	color: $color-black;
 
 	&__image {
 		align-self: center;
@@ -22,9 +22,9 @@
 	}
 
 	&__subtitle {
+		color: $color-green;
+		font-size: 1rem;
 		margin-top: -0.6rem;
 		margin-left: 0.4rem;
-		font-size: 1rem;
-		color: $color-green;
 	}
 }
