@@ -25,7 +25,7 @@ const ListingDetailsPage = () => {
 					<i className="fa fa-shopping-cart"></i> add to cart
 				</span>
 			</div>
-			<p className="listingDetails__seller">
+			<p className="listingDetails__seller u-mb-2">
 				by{" "}
 				<a href="#!" className="link link-primary">
 					{listing.user.name}
