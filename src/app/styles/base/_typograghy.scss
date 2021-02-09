@@ -24,11 +24,23 @@ body {
 }
 
 .link {
-	color: $link-color;
 	text-decoration: none;
 
 	&:hover {
-		color: darken($color: $link-color, $amount: 10);
 		text-decoration: underline;
+	}
+
+	&-primary {
+		color: $primary-color;
+		&:hover {
+			color: darken($color: $primary-color, $amount: 10);
+		}
+	}
+
+	&-secondary {
+		color: $secondary-color;
+		&:hover {
+			color: darken($color: $secondary-color, $amount: 10);
+		}
 	}
 }
