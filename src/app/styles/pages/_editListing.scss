@@ -1,0 +1,29 @@
+.editListing {
+	margin: 1rem;
+	text-align: center;
+
+	&__title {
+		color: $primary-color;
+		font-size: 3rem;
+		display: inline-block;
+		position: relative;
+		&::after {
+			@include partial-line-after;
+		}
+	}
+
+	&__form {
+		text-align: left;
+		padding-left: 15%;
+		padding-right: 15%;
+
+		@include respond(tab-port) {
+			padding-left: 10%;
+			padding-right: 10%;
+		}
+		@include respond(phone-port) {
+			padding-left: 5%;
+			padding-right: 5%;
+		}
+	}
+}
