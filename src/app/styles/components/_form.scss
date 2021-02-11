@@ -9,6 +9,7 @@
 		border: 0.1rem solid $secondary-color;
 		padding: 1rem;
 		border-radius: 0.5rem;
+		background-color: $color-light-grey;
 
 		&:focus {
 			outline: none;
@@ -26,11 +27,30 @@
 		display: block;
 		color: $color-black;
 		font-size: 1.8rem;
+		font-weight: 500;
 		@include no-selection;
 	}
 
 	&__errorMessage {
 		color: $color-red;
 		font-size: 1.2rem;
+
+		@include respond(tab-port) {
+			font-size: 1.4rem;
+		}
+
+		@include respond(phone-port) {
+			font-size: 1.6rem;
+		}
+	}
+
+	&__textarea {
+		resize: none;
+	}
+
+	&__inputSuffix {
+		font-size: 2rem;
+		color: $color-green;
+		margin-left: -5rem;
 	}
 }
