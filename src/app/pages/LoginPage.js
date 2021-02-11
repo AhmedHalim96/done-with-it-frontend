@@ -21,18 +21,8 @@ const LoginPage = () => {
 					onSubmit={values => console.log(values)}
 					valdiationSchema={valdiationSchema}
 				>
-					<FormField
-						name="email"
-						type="text"
-						label="Email"
-						className="form__input-block"
-					/>
-					<FormField
-						name="password"
-						type="password"
-						label="Password"
-						className="form__input-block"
-					/>
+					<FormField name="email" type="text" label="Email" block />
+					<FormField name="password" type="password" label="Password" block />
 					<Submit title="Login" className="button-block" />
 					<p className="paragraph">
 						Not A Member?{" "}

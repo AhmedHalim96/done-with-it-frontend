@@ -30,29 +30,14 @@ const RegisterPage = () => {
 					onSubmit={values => console.log(values)}
 					valdiationSchema={valdiationSchema}
 				>
-					<FormField
-						name="name"
-						type="text"
-						label="Name"
-						className="form__input-block"
-					/>
-					<FormField
-						name="email"
-						type="text"
-						label="Email"
-						className="form__input-block"
-					/>
-					<FormField
-						name="password"
-						type="password"
-						label="Password"
-						className="form__input-block"
-					/>
+					<FormField name="name" type="text" label="Name" block />
+					<FormField name="email" type="text" label="Email" block />
+					<FormField name="password" type="password" label="Password" block />
 					<FormField
 						name="confirmPassword"
 						type="password"
 						label="Confirm Password"
-						className="form__input-block"
+						block
 					/>
 					<Submit title="Register" className="button-block" />
 					<p className="paragraph">
