@@ -5,10 +5,22 @@
 	transform: translate(-50%, -50%);
 }
 
+@mixin center-x {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50);
+}
+
+@mixin center-y {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
 @mixin partial-line-after {
 	content: "";
-	border: 1px solid $primary-color;
-	width: 10em;
+	border: 0.1rem solid $primary-color;
+	width: 50%;
 	display: inline-block;
 	margin-top: 3rem;
 	@include center;
