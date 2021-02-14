@@ -19,3 +19,6 @@ $color-medium-grey: #6e6969;
 $color-dark-grey: #424242;
 
 $default-font-size: 1.6rem;
+
+$navbar-height: 6rem;
+$min-page-height: calc(100vh - #{$navbar-height});

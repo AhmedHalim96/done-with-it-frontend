@@ -2,7 +2,7 @@
 	background-size: cover;
 	height: 100%;
 	width: 100%;
-	min-height: 100vh;
+	min-height: $min-page-height;
 	overflow-x: hidden;
 	@include flex-center;
 
