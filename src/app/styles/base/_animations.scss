@@ -126,3 +126,21 @@
 		transform: translateX(-40rem);
 	}
 }
+
+@keyframes sidebar-item-hover {
+	0% {
+		background: linear-gradient(to right, $color-white 1%, $primary-color 1%);
+	}
+
+	50% {
+		background: linear-gradient(to right, $color-white 50%, $primary-color 50%);
+	}
+
+	100% {
+		background: linear-gradient(
+			to right,
+			$color-white 100%,
+			$primary-color 100%
+		);
+	}
+}
