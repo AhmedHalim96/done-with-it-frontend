@@ -31,7 +31,7 @@ const valdiationSchema = Yup.object().shape({
 		),
 });
 
-const ListingEditPage = () => {
+const EditListingPage = () => {
 	return (
 		<div className="editListing">
 			<h1 className="editListing__title">Edit Listing</h1>
@@ -73,4 +73,4 @@ const ListingEditPage = () => {
 	);
 };
 
-export default ListingEditPage;
+export default EditListingPage;
