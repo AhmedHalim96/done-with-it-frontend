@@ -3,9 +3,10 @@ import * as Yup from "yup";
 
 import Form from "../components/forms/Form";
 import FormField from "../components/forms/FormField";
+import ImageInput from "../components/forms/ImageInput";
 import Submit from "../components/forms/Submit";
 
-const FILE_SIZE = 1.9 * 1024 * 1024;
+const FILE_SIZE = 2000000;
 const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png"];
 
 const valdiationSchema = Yup.object().shape({
@@ -16,18 +17,18 @@ const valdiationSchema = Yup.object().shape({
 		.max(1000)
 		.required("Price Must be an number between 1 and 1000"),
 	description: Yup.string().label("Description").min(5).max(255),
-	// photo: Yup.mixed()
-	// 	.required("A Photo is required")
-	// 	.test(
-	// 		"fileSize",
-	// 		"File too large",
-	// 		value => value && value.size <= FILE_SIZE
-	// 	)
-	// 	.test(
-	// 		"fileFormat",
-	// 		"Unsupported Format",
-	// 		value => value && SUPPORTED_FORMATS.includes(value.type)
-	// 	),
+	photo: Yup.mixed()
+		.required("A Photo is required")
+		.test(
+			"fileFormat",
+			"Unsupported Format",
+			value => value && SUPPORTED_FORMATS.includes(value.type)
+		)
+		.test(
+			"fileSize",
+			"File too large",
+			value => value && value.size <= FILE_SIZE
+		),
 });
 
 const ListingEditPage = () => {
@@ -38,13 +39,14 @@ const ListingEditPage = () => {
 				className="editListing__form"
 				initialValues={{
 					description: "",
-					photo: null,
+					photo: "",
 					price: 1,
 					title: "",
 				}}
 				onSubmit={values => console.log(values)}
 				valdiationSchema={valdiationSchema}
 			>
+				<ImageInput name="photo" />
 				<FormField block type="text" name="title" label="Title" />
 				<FormField
 					label="Price"
@@ -64,9 +66,6 @@ const ListingEditPage = () => {
 					placeholder="Descrption"
 					rows="12"
 				/>
-
-				{/* File input */}
-				{/* <FormField component="file" label="Photo" name="photo" /> */}
 
 				<Submit title="Update Listing" className="button-block" />
 			</Form>

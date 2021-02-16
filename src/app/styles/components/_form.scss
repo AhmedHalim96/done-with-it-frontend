@@ -53,4 +53,39 @@
 		color: $color-green;
 		margin-left: -5rem;
 	}
+
+	&__image {
+		display: none;
+
+		&Preview {
+			background-repeat: no-repeat;
+			background-size: cover;
+			height: 16rem;
+			width: 16rem;
+			border-radius: 1rem;
+			margin-right: 0.5rem;
+
+			&Wrapper {
+				display: flex;
+			}
+		}
+		&Label {
+			display: inline-block;
+			background-color: $color-light-grey;
+			height: 16rem;
+			width: 16rem;
+			position: relative;
+			border-radius: 1rem;
+
+			&:hover {
+				cursor: pointer;
+			}
+
+			& > i {
+				font-size: 6rem;
+				color: $color-dark-grey;
+				@include center;
+			}
+		}
+	}
 }
