@@ -24,7 +24,11 @@ body {
 }
 
 .link {
-	text-decoration: none;
+	&,
+	&:visited {
+		text-decoration: none;
+		color: initial;
+	}
 
 	&:hover {
 		text-decoration: underline;
