@@ -1,8 +1,8 @@
 import React from "react";
 
-import settings from "../config/settings";
+import settings from "../../config/settings";
 
-const Navbar = () => {
+const Navbar = ({ openSidebar }) => {
 	return (
 		<div className="navbar">
 			<a href="/" className="navbar__logo">
@@ -20,7 +20,7 @@ const Navbar = () => {
 					className="form__input navbar__searchInput"
 				/>
 			</div>
-			<i className="fa fa-bars navbar__sidebarToggle"></i>
+			<i className="fa fa-bars navbar__sidebarToggle" onClick={openSidebar}></i>
 		</div>
 	);
 };
