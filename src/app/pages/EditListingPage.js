@@ -6,6 +6,21 @@ import FormField from "../components/forms/FormField";
 import ImageInput from "../components/forms/ImageInput";
 import Submit from "../components/forms/Submit";
 
+const listing = {
+	id: 7,
+	title: "Couch",
+	description:
+		" Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam soluta libero vitae magni, saepe deleniti non voluptate quaerat veniam? Fuga ipsam incidunt deleniti doloremque quis hic est in doloribus officia?",
+	price: 100,
+	photo: "http://192.168.1.111:8000/storage/listings/couch-photo.jpg",
+	user: {
+		id: 2,
+		name: "Ahmed Halim",
+		avatar: "http://192.168.1.111:8000/storage/listings/jacket-photo.jpg",
+		listing: 12,
+	},
+};
+
 const FILE_SIZE = 2000000;
 const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png"];
 
@@ -38,15 +53,15 @@ const EditListingPage = () => {
 			<Form
 				className="editListing__form"
 				initialValues={{
-					description: "",
-					photo: "",
-					price: 1,
-					title: "",
+					description: listing.description,
+					photo: listing.photo,
+					price: listing.price,
+					title: listing.title,
 				}}
 				onSubmit={values => console.log(values)}
 				valdiationSchema={valdiationSchema}
 			>
-				<ImageInput name="photo" />
+				<ImageInput name="photo" url={listing.photo} />
 				<FormField block type="text" name="title" label="Title" />
 				<FormField
 					label="Price"
