@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { useFormikContext } from "formik";
 import ErrorMessage from "./ErrorMessage";
 
-const ImageInput = ({ name, ...otherProps }) => {
-	const [preview, setpreview] = useState(null);
+const ImageInput = ({ name, url = null, ...otherProps }) => {
+	const [preview, setpreview] = useState(url); // either a photo url is given  or null
 	const {
 		errors,
 		touched,
