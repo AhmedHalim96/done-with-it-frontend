@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 
 import settings from "../../config/settings";
+import LayoutContext from "../../layout/context";
 
-const Navbar = ({ openSidebar }) => {
+const Navbar = () => {
+	const { openSidebar } = useContext(LayoutContext);
+
 	return (
 		<div className="navbar">
 			<Link to="/" className="navbar__logo">

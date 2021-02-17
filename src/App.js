@@ -7,6 +7,7 @@ import Navbar from "./app/components/layout/Navbar";
 import Sidebar from "./app/components/layout/Sidebar";
 import AuthenticatedRoutes from "./app/navigation/AuthenticatedRoutes";
 import NonAuthenticatedRoutes from "./app/navigation/NonAuthenticatedRoutes";
+import LayoutContext from "./app/layout/context";
 
 const App = () => {
 	const [sidebarState, setSidebarState] = useState(false);
@@ -14,11 +15,19 @@ const App = () => {
 
 	return (
 		<div className="app">
-			<Navbar openSidebar={() => setSidebarState(true)} />
-			<Sidebar state={sidebarState} close={() => setSidebarState(false)} />
-			<Switch>
-				{authenticated ? <AuthenticatedRoutes /> : <NonAuthenticatedRoutes />}
-			</Switch>
+			<LayoutContext.Provider
+				value={{
+					isSidebarOpen: sidebarState,
+					openSidebar: () => setSidebarState(true),
+					closeSidebar: () => setSidebarState(false),
+				}}
+			>
+				<Navbar />
+				<Sidebar />
+				<Switch>
+					{authenticated ? <AuthenticatedRoutes /> : <NonAuthenticatedRoutes />}
+				</Switch>
+			</LayoutContext.Provider>
 		</div>
 	);
 };
