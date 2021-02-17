@@ -1,11 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const SidebarItem = ({ to, title }) => {
 	return (
 		<li className="sidebar__item">
-			<a href={to} className="sidebar__link">
+			<Link to={to} className="sidebar__link">
 				{title}
-			</a>
+			</Link>
 		</li>
 	);
 };

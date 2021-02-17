@@ -10,7 +10,7 @@ import NonAuthenticatedRoutes from "./app/navigation/NonAuthenticatedRoutes";
 
 const App = () => {
 	const [sidebarState, setSidebarState] = useState(false);
-	const [authenticated, setAuthenticated] = useState(true);
+	const [authenticated, setAuthenticated] = useState(false);
 
 	return (
 		<div className="app">

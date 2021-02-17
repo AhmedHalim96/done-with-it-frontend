@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const listing = {
 	id: 7,
@@ -27,9 +28,9 @@ const ListingDetailsPage = () => {
 			</div>
 			<p className="listingDetails__seller u-mb-2">
 				by{" "}
-				<a href="#!" className="link link-primary">
+				<Link to="#!" className="link link-primary">
 					{listing.user.name}
-				</a>
+				</Link>
 			</p>
 			{/* Will be replaced by a carosell */}
 			<img

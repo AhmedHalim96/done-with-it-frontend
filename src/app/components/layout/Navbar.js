@@ -1,18 +1,19 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import settings from "../../config/settings";
 
 const Navbar = ({ openSidebar }) => {
 	return (
 		<div className="navbar">
-			<a href="/" className="navbar__logo">
+			<Link to="/" className="navbar__logo">
 				<img
 					src={`${settings.assetsUrl}/logo-white.png`}
 					alt="Done with it"
 					className="navbar__logoImage"
 				/>
 				<h2 className="navbar__logoText">Done with it</h2>
-			</a>
+			</Link>
 			<div className="navbar__search">
 				<input
 					type="text"

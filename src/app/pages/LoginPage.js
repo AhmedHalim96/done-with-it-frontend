@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import * as Yup from "yup";
 
 import Branding from "../components/Branding";
@@ -31,9 +32,9 @@ const LoginPage = () => {
 					<Submit title="Login" className="button-block" />
 					<p className="paragraph">
 						Not A Member?{" "}
-						<a href="/register" className="link">
+						<Link to="/register" className="link">
 							Sign up now!
-						</a>
+						</Link>
 					</p>
 				</Form>
 			</div>
