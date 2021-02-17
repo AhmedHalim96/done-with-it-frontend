@@ -9,7 +9,8 @@ const Sidebar = ({ state, close }) => {
 			<>
 				<Backdrop close={close} />
 				<div className="sidebar">
-					<SidebarItemList />
+					<i className="fa fa-times sidebar__close" onClick={close}></i>
+					<SidebarItemList className="u-mt-4" />
 				</div>
 			</>
 		)

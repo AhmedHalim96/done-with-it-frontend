@@ -10,6 +10,20 @@
 	opacity: 0.9;
 	z-index: 2;
 
+	&__close {
+		cursor: pointer;
+		color: $color-white;
+		font-size: 3rem;
+		padding: 0.5rem;
+		display: inline-block;
+		position: fixed;
+		top: 1rem;
+		right: 1rem;
+		&:hover {
+			color: darken($color: $color-white, $amount: 10);
+		}
+	}
+
 	&__itemList {
 		padding-top: 2rem;
 		list-style: none;

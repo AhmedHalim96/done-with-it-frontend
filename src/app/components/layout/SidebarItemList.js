@@ -1,9 +1,9 @@
 import React from "react";
 import SidebarItem from "./SidebarItem";
 
-const SidebarItemList = () => {
+const SidebarItemList = ({ className = "" }) => {
 	return (
-		<ul className="sidebar__itemList">
+		<ul className={"sidebar__itemList " + className}>
 			<SidebarItem to="/" title="Home" />
 			<SidebarItem to="/login" title="Login" />
 			<SidebarItem to="/register" title="Register" />
