@@ -1,5 +1,4 @@
 import React from "react";
-import Branding from "../Branding";
 import Backdrop from "./Backdrop";
 import SidebarItemList from "./SidebarItemList";
 
