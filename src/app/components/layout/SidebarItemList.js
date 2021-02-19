@@ -1,13 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
+import AuthenticationContext from "../../auth/context";
 import SidebarItem from "./SidebarItem";
 
 const SidebarItemList = ({ className = "" }) => {
+	const { isAuthenticated, setAuthenticated } = useContext(
+		AuthenticationContext
+	);
 	return (
 		<ul className={"sidebar__itemList " + className}>
 			<SidebarItem to="/" title="Home" />
-			<SidebarItem to="/login" title="Login" />
-			<SidebarItem to="/register" title="Register" />
-			<SidebarItem to="/createListing" title="Create Listing" />
+
+			{!isAuthenticated && <SidebarItem to="/login" title="Login" />}
+			{!isAuthenticated && <SidebarItem to="/register" title="Register" />}
+
+			{isAuthenticated && (
+				<SidebarItem to="/createListing" title="Create Listing" />
+			)}
 		</ul>
 	);
 };
