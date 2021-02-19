@@ -8,6 +8,7 @@ import Sidebar from "./app/components/layout/Sidebar";
 import AuthenticatedRoutes from "./app/navigation/AuthenticatedRoutes";
 import NonAuthenticatedRoutes from "./app/navigation/NonAuthenticatedRoutes";
 import LayoutContext from "./app/layout/context";
+import AuthenticationContext from "./app/Authentication/context";
 
 const App = () => {
 	const [sidebarState, setSidebarState] = useState(false);
@@ -22,9 +23,16 @@ const App = () => {
 					closeSidebar: () => setSidebarState(false),
 				}}
 			>
-				<Navbar />
-				<Sidebar />
-				{authenticated ? <AuthenticatedRoutes /> : <NonAuthenticatedRoutes />}
+				<AuthenticationContext.Provider
+					value={{
+						isAuthenticated: authenticated,
+						setAuthenticated,
+					}}
+				>
+					<Navbar />
+					<Sidebar />
+					{authenticated ? <AuthenticatedRoutes /> : <NonAuthenticatedRoutes />}
+				</AuthenticationContext.Provider>
 			</LayoutContext.Provider>
 		</div>
 	);
