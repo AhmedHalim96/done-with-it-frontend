@@ -24,9 +24,7 @@ const App = () => {
 			>
 				<Navbar />
 				<Sidebar />
-				<Switch>
-					{authenticated ? <AuthenticatedRoutes /> : <NonAuthenticatedRoutes />}
-				</Switch>
+				{authenticated ? <AuthenticatedRoutes /> : <NonAuthenticatedRoutes />}
 			</LayoutContext.Provider>
 		</div>
 	);

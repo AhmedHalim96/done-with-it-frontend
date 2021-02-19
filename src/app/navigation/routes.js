@@ -5,5 +5,5 @@ export default Object.freeze({
 	LISTING_DETAILES: "/listing/:listingId",
 	LOGIN: "/login",
 	REGISTER: "/register",
-	WELCOME: "/",
+	WELCOME: "/welcome",
 });

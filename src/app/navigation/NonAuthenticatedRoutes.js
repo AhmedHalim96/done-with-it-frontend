@@ -1,5 +1,5 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import ListingsPage from "../pages/ListingsPage";
 
 import LoginPage from "../pages/LoginPage";
@@ -9,7 +9,7 @@ import routes from "./routes";
 
 const NonAuthenticatedRoutes = () => {
 	return (
-		<>
+		<Switch>
 			<Route path={routes.LOGIN}>
 				<LoginPage />
 			</Route>
@@ -22,7 +22,10 @@ const NonAuthenticatedRoutes = () => {
 			<Route path={routes.WELCOME}>
 				<WelcomePage />
 			</Route>
-		</>
+			<Route path="/">
+				<WelcomePage />
+			</Route>
+		</Switch>
 	);
 };
 
