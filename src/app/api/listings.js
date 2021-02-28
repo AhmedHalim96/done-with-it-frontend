@@ -4,7 +4,9 @@ const endpoint = "/listings";
 
 const getListings = () => client.get(endpoint);
 
-const addListings = listing => {
+const getListingDetails = listingId => client.get(endpoint + "/" + listingId);
+
+const addListing = listing => {
 	const data = new FormData();
 	data.append("title", listing.title);
 	data.append("price", listing.price);
@@ -16,8 +18,9 @@ const addListings = listing => {
 };
 
 const listingsApi = {
+	addListing,
 	getListings,
-	addListings,
+	getListingDetails,
 };
 
 export default listingsApi;
