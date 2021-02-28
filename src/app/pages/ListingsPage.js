@@ -14,6 +14,7 @@ const ListingsPage = () => {
 		}
 
 		setListings(res.data);
+		console.log(listings);
 	};
 
 	useEffect(() => {
@@ -24,9 +25,8 @@ const ListingsPage = () => {
 		<div className="listings">
 			<div className="listings__feed">
 				{listings.map(listing => (
-					<Link to={"/listings/" + listing.id}>
+					<Link to={"/listings/" + listing.id} key={listing.id}>
 						<Card
-							key={listing.id}
 							image={listing.photo}
 							title={listing.title}
 							subtitle={listing.price + "$"}
