@@ -26,16 +26,29 @@ const ListingDetailsPage = () => {
 	useEffect(() => {
 		getListing();
 	}, []);
+
 	return (
 		listing && (
 			<div className="listingDetails">
 				<div className="listingDetails__top">
 					<h2 className="listingDetails__title">{listing.title} </h2>
 					<span className="listingDetails__price">{listing.price}$</span>
-					<span className="button button-primary button-outline listingDetails__addToCart">
-						<i className="fa fa-shopping-cart"></i> add to cart
+					<span
+						className="button button-primary button-outline listingDetails__addToCart"
+						title="Add To Cart"
+					>
+						<i className="fa fa-shopping-cart"></i> +
 					</span>
 				</div>
+				<p className="listingDetails__category">
+					Category:{" "}
+					<Link
+						to={"/categories/" + listing.category.id}
+						className="link link-secondary"
+					>
+						{listing.category.title}
+					</Link>
+				</p>
 				<p className="listingDetails__seller u-mb-2">
 					by{" "}
 					<Link to="#!" className="link link-primary">
