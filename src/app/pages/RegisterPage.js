@@ -7,6 +7,7 @@ import Form from "../components/forms/Form";
 import FormField from "../components/forms/FormField";
 import Submit from "../components/forms/Submit";
 import settings from "../config/settings";
+import routes from "../navigation/routes";
 
 const valdiationSchema = Yup.object().shape({
 	name: Yup.string().label("Name").required(),
@@ -49,7 +50,7 @@ const RegisterPage = () => {
 					<Submit title="Register" className="button-block" />
 					<p className="paragraph">
 						Already A Member?{" "}
-						<Link to="/login" className="link">
+						<Link to={routes.LOGIN} className="link">
 							Sign In!
 						</Link>
 					</p>

@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import AuthenticationContext from "../../auth/context";
+import routes from "../../navigation/routes";
 import SidebarItem from "./SidebarItem";
 
 const SidebarItemList = ({ className = "" }) => {
@@ -10,11 +11,13 @@ const SidebarItemList = ({ className = "" }) => {
 		<ul className={"sidebar__itemList " + className}>
 			<SidebarItem to="/" title="Home" />
 
-			{!isAuthenticated && <SidebarItem to="/login" title="Login" />}
-			{!isAuthenticated && <SidebarItem to="/register" title="Register" />}
+			{!isAuthenticated && <SidebarItem to={routes.LOGIN} title="Login" />}
+			{!isAuthenticated && (
+				<SidebarItem to={routes.REGISTER} title="Register" />
+			)}
 
 			{isAuthenticated && (
-				<SidebarItem to="/createListing" title="Create Listing" />
+				<SidebarItem to={routes.CREATE_LISTING} title="Create Listing" />
 			)}
 		</ul>
 	);
