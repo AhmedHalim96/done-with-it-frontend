@@ -14,7 +14,6 @@ const ListingsPage = () => {
 		}
 
 		setListings(res.data);
-		console.log(listings);
 	};
 
 	useEffect(() => {
