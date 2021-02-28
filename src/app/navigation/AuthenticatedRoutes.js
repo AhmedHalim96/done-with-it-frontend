@@ -25,6 +25,9 @@ const AuthenticatedRoutes = () => {
 			<Route path={routes.FEED}>
 				<ListingsPage />
 			</Route>
+			<Route>
+				<ListingsPage />
+			</Route>
 		</Switch>
 	);
 };
