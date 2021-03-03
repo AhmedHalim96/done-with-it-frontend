@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import * as Yup from "yup";
 
+import categoriesApi from "../api/categories";
 import Form from "../components/forms/Form";
 import FormField from "../components/forms/FormField";
 import ImageInput from "../components/forms/ImageInput";
 import Submit from "../components/forms/Submit";
+import FormSelect from "../components/forms/FormSelect";
 
 const FILE_SIZE = 2000000;
 const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png"];
@@ -17,6 +19,9 @@ const validationSchema = Yup.object().shape({
 		.max(1000)
 		.required("Price Must be an number between 1 and 1000"),
 	description: Yup.string().label("Description").min(5).max(255),
+	categoryId: Yup.number()
+		.label("Category")
+		.required("You must choose a category"),
 	photo: Yup.mixed()
 		.required("A Photo is required")
 		.test(
@@ -32,6 +37,15 @@ const validationSchema = Yup.object().shape({
 });
 
 const CreateListingPage = () => {
+	const [categories, setCategories] = useState([]);
+
+	const getCategories = async () => {
+		const res = await categoriesApi.getCategories();
+		setCategories(res.data);
+	};
+	useEffect(() => {
+		getCategories();
+	}, []);
 	return (
 		<div className="createListing">
 			<h1 className="createListing__title">Create a New Listing</h1>
@@ -39,6 +53,7 @@ const CreateListingPage = () => {
 				className="createListing__form"
 				initialValues={{
 					description: "",
+					categoryId: "",
 					photo: "",
 					price: 1,
 					title: "",
@@ -56,7 +71,7 @@ const CreateListingPage = () => {
 					type="number"
 					suffix="$"
 				/>
-
+				<FormSelect items={categories} name="categoryId" label="Categories" />
 				<FormField
 					block
 					className="form__textarea"
