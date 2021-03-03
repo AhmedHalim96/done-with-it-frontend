@@ -1,6 +1,6 @@
 export default Object.freeze({
-	CREATE_LISTING: "/listing/create",
-	EDIT_DETAILS: "/listing/:listingId/update",
+	CREATE_LISTING: "/listings/new",
+	EDIT_LISTING: "/update/:listingId",
 	FEED: "/feed",
 	LISTING_DETAILS: "/listings/:listingId",
 	LOGIN: "/login",

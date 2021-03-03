@@ -18,7 +18,7 @@ const AuthenticatedRoutes = () => {
 				<ListingDetailsPage />
 			</Route>
 
-			<Route path={routes.EDIT_DETAILS}>
+			<Route path={routes.EDIT_LISTING}>
 				<EditListingPage />
 			</Route>
 
