@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import "./app/styles/App.scss";
-
-import categoriesApi from "./app/api/categories";
 
 import Navbar from "./app/components/layout/Navbar";
 import Sidebar from "./app/components/layout/Sidebar";
@@ -14,14 +12,6 @@ import AuthContext from "./app/auth/context";
 const App = () => {
 	const [sidebarState, setSidebarState] = useState(false);
 	const [authenticated, setAuthenticated] = useState(true);
-
-	const getCategories = async () => {
-		const res = await categoriesApi.getCategories();
-		console.log(res.data);
-	};
-	useEffect(() => {
-		getCategories();
-	}, []);
 
 	return (
 		<div className="app">
