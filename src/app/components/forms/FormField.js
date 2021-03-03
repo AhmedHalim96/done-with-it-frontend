@@ -20,7 +20,7 @@ const FormField = ({
 			<Field
 				className={`form__input  
 					${touched[name] && errors[name] ? "form__input-danger" : "u-mb-2"}  
-					${block && "form__input-block"}
+					${block ? "form__input-block" : ""}
 					${className}`}
 				id={name}
 				name={name}
