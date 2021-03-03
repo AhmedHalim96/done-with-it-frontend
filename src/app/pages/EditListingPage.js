@@ -5,8 +5,10 @@ import listingsApi from "../api/listings";
 
 import Form from "../components/forms/Form";
 import FormField from "../components/forms/FormField";
+import FormSelect from "../components/forms/FormSelect";
 import ImageInput from "../components/forms/ImageInput";
 import Submit from "../components/forms/Submit";
+import useCategories from "../hooks/useCategories";
 
 const FILE_SIZE = 2000000;
 const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png"];
@@ -37,6 +39,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const EditListingPage = () => {
+	const categories = useCategories();
 	const listingId = useParams().listingId;
 	const [listing, setListing] = useState(null);
 
@@ -87,6 +90,8 @@ const EditListingPage = () => {
 						type="number"
 						suffix="$"
 					/>
+
+					<FormSelect items={categories} name="categoryId" label="Categories" />
 
 					<FormField
 						block
