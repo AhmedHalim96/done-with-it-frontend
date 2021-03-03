@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import * as Yup from "yup";
 
-import categoriesApi from "../api/categories";
 import Form from "../components/forms/Form";
 import FormField from "../components/forms/FormField";
 import ImageInput from "../components/forms/ImageInput";
 import Submit from "../components/forms/Submit";
 import FormSelect from "../components/forms/FormSelect";
+import useCategories from "../hooks/useCategories";
 
 const FILE_SIZE = 2000000;
 const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png"];
@@ -37,15 +37,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const CreateListingPage = () => {
-	const [categories, setCategories] = useState([]);
-
-	const getCategories = async () => {
-		const res = await categoriesApi.getCategories();
-		setCategories(res.data);
-	};
-	useEffect(() => {
-		getCategories();
-	}, []);
+	const categories = useCategories();
 	return (
 		<div className="createListing">
 			<h1 className="createListing__title">Create a New Listing</h1>
