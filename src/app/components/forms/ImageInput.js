@@ -3,14 +3,13 @@ import { useFormikContext } from "formik";
 import ErrorMessage from "./ErrorMessage";
 
 const ImageInput = ({ name, url = null, ...otherProps }) => {
-	const [preview, setpreview] = useState(url); // either a photo url is given  or null
+	const [preview, setPreview] = useState(url); // either a photo url is given  or null
 	const {
 		errors,
 		touched,
 		setFieldValue,
 		setFieldTouched,
 	} = useFormikContext();
-	console.log(errors);
 	return (
 		<div className="form__group">
 			<div
@@ -35,7 +34,7 @@ const ImageInput = ({ name, url = null, ...otherProps }) => {
 				type="file"
 				onChange={e => {
 					const photo = e.target.files[0];
-					setpreview(URL.createObjectURL(photo));
+					setPreview(URL.createObjectURL(photo));
 					setFieldTouched(name, true);
 					setFieldValue(name, photo);
 				}}
