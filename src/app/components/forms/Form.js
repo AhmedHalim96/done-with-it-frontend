@@ -4,7 +4,7 @@ import React from "react";
 const AppForm = ({
 	initialValues,
 	onSubmit,
-	valdiationSchema,
+	validationSchema,
 	className = "",
 	children,
 }) => {
@@ -12,7 +12,7 @@ const AppForm = ({
 		<Formik
 			initialValues={initialValues}
 			onSubmit={onSubmit}
-			validationSchema={valdiationSchema}
+			validationSchema={validationSchema}
 		>
 			{() => <Form className={"form " + className}>{children}</Form>}
 		</Formik>
