@@ -9,7 +9,7 @@ import Submit from "../components/forms/Submit";
 const FILE_SIZE = 2000000;
 const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png"];
 
-const valdiationSchema = Yup.object().shape({
+const validationSchema = Yup.object().shape({
 	title: Yup.string().label("Title").min(5).max(90).required(),
 	price: Yup.number()
 		.label("Price")
@@ -44,7 +44,7 @@ const CreateListingPage = () => {
 					title: "",
 				}}
 				onSubmit={values => console.log(values)}
-				valdiationSchema={valdiationSchema}
+				validationSchema={validationSchema}
 			>
 				<ImageInput name="photo" />
 				<FormField block type="text" name="title" label="Title" />
@@ -61,9 +61,9 @@ const CreateListingPage = () => {
 					block
 					className="form__textarea"
 					component="textarea"
-					label="Decription"
+					label="Description"
 					name="description"
-					placeholder="Descrption"
+					placeholder="Description"
 					rows="12"
 				/>
 
