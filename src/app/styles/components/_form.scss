@@ -89,4 +89,28 @@
 			}
 		}
 	}
+
+	&__select {
+		appearance: none;
+		cursor: pointer;
+
+		&::-ms-expand {
+			display: none;
+		}
+	}
+
+	&__selectWrapper {
+		display: flex;
+		align-items: center;
+
+		&::after {
+			content: "";
+			width: 1.3rem;
+			margin-left: -2.5rem;
+			height: 1rem;
+			display: inline-block;
+			background-color: $color-dark-grey;
+			clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+		}
+	}
 }
