@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import Card from "../components/Card";
 import listingsApi from "../api/listings";
+import settings from "../config/settings";
 
 const ListingsPage = () => {
 	const [listings, setListings] = useState([]);
@@ -26,10 +27,14 @@ const ListingsPage = () => {
 				{listings.map(listing => (
 					<Link to={"/listings/" + listing.id} key={listing.id}>
 						<Card
-							image={listing.photo}
+							image={settings.baseUrl + listing.photo}
 							title={listing.title}
 							subtitle={listing.price + "$"}
-							details={listing.description.substr(0, 80) + "..."}
+							details={
+								listing.description
+									? listing.description.substr(0, 80) + "..."
+									: null
+							}
 						/>{" "}
 					</Link>
 				))}

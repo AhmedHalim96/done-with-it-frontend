@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import listingsApi from "../api/listings";
+import settings from "../config/settings";
 
 const ListingDetailsPage = () => {
 	const listingId = useParams().listingId;
@@ -39,6 +40,13 @@ const ListingDetailsPage = () => {
 					>
 						<i className="fa fa-shopping-cart"></i> +
 					</span>
+					<Link
+						to={"/update/" + listing.id}
+						className="button button-secondary button-outline"
+						title="Add To Cart"
+					>
+						<i className="fa fa-pencil"></i> Edit
+					</Link>
 				</div>
 				<p className="listingDetails__category">
 					Category:{" "}
@@ -57,7 +65,7 @@ const ListingDetailsPage = () => {
 				</p>
 				{/* Will be replaced by a carosell */}
 				<img
-					src={listing.photo}
+					src={settings.baseUrl + listing.photo}
 					alt={listing.title}
 					className="listingDetails__photo"
 				/>

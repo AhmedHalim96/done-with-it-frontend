@@ -8,6 +8,7 @@ import FormField from "../components/forms/FormField";
 import FormSelect from "../components/forms/FormSelect";
 import ImageInput from "../components/forms/ImageInput";
 import Submit from "../components/forms/Submit";
+import settings from "../config/settings";
 import useCategories from "../hooks/useCategories";
 
 const FILE_SIZE = 2000000;
@@ -80,7 +81,7 @@ const EditListingPage = () => {
 					onSubmit={values => console.log(values)}
 					validationSchema={validationSchema}
 				>
-					<ImageInput name="photo" url={listing.photo} />
+					<ImageInput name="photo" url={settings.baseUrl + listing.photo} />
 					<FormField block type="text" name="title" label="Title" />
 					<FormField
 						label="Price"

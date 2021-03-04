@@ -7,6 +7,7 @@ import ImageInput from "../components/forms/ImageInput";
 import Submit from "../components/forms/Submit";
 import FormSelect from "../components/forms/FormSelect";
 import useCategories from "../hooks/useCategories";
+import listingsApi from "../api/listings";
 
 const FILE_SIZE = 2000000;
 const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png"];
@@ -38,6 +39,15 @@ const validationSchema = Yup.object().shape({
 
 const CreateListingPage = () => {
 	const categories = useCategories();
+
+	const addListing = async listing => {
+		const res = await listingsApi.addListing(listing);
+		if (!res.ok) {
+			return console.log(res.data);
+		}
+		console.log(res.data);
+	};
+
 	return (
 		<div className="createListing">
 			<h1 className="createListing__title">Create a New Listing</h1>
@@ -50,7 +60,7 @@ const CreateListingPage = () => {
 					price: 1,
 					title: "",
 				}}
-				onSubmit={values => console.log(values)}
+				onSubmit={addListing}
 				validationSchema={validationSchema}
 			>
 				<ImageInput name="photo" />
