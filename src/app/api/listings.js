@@ -17,10 +17,23 @@ const addListing = listing => {
 	return client.post(endpoint, data);
 };
 
+const updateListing = listing => {
+	const data = new FormData();
+	if (listing.title) data.append("title", listing.title);
+	if (listing.price) data.append("price", listing.price);
+	if (listing.description) data.append("description", listing.description);
+	if (listing.categoryId) data.append("category_id", listing.categoryId);
+	if (listing.photo) data.append("photo", listing.photo);
+
+	data.append("_method", "PATCH");
+	return client.post(endpoint + "/" + listing.id, data);
+};
+
 const listingsApi = {
 	addListing,
 	getListings,
 	getListingDetails,
+	updateListing,
 };
 
 export default listingsApi;

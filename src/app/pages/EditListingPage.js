@@ -64,6 +64,26 @@ const EditListingPage = () => {
 		});
 	};
 
+	const updateListing = async values => {
+		const updatedListing = {};
+		if (values.title !== listing.title) updatedListing.title = values.title;
+		if (values.photo !== listing.photo) updatedListing.photo = values.photo;
+		if (values.price !== listing.price) updatedListing.price = values.price;
+		if (values.description !== listing.description)
+			updatedListing.description = values.description;
+		if (values.categoryId !== listing.category.id)
+			updatedListing.categoryId = values.categoryId;
+
+		if (Object.keys(updatedListing).length === 0)
+			return alert("Nothing Changed");
+
+		updatedListing.id = listing.id;
+
+		const res = await listingsApi.updateListing(updatedListing);
+		if (!res.ok) return console.log(res.data);
+		console.log(res.data);
+	};
+
 	useEffect(() => {
 		getListing();
 	}, []);
@@ -81,7 +101,7 @@ const EditListingPage = () => {
 						title: listing.title,
 						categoryId: listing.category.id,
 					}}
-					onSubmit={values => console.log(values)}
+					onSubmit={updateListing}
 					validationSchema={validationSchema}
 				>
 					<ImageInput name="photo" url={settings.baseUrl + listing.photo} />
