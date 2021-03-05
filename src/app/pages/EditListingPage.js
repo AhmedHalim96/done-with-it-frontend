@@ -27,16 +27,19 @@ const validationSchema = Yup.object().shape({
 	description: Yup.string().label("Description").min(5).max(255),
 	photo: Yup.mixed()
 		.required("A Photo is required")
-		.test(
-			"fileFormat",
-			"Unsupported Format",
-			value => value && SUPPORTED_FORMATS.includes(value.type)
-		)
-		.test(
-			"fileSize",
-			"File too large",
-			value => value && value.size <= FILE_SIZE
-		),
+		.test("fileFormat", "Unsupported Format", value => {
+			if (value && typeof value === "string") {
+				return true;
+			}
+
+			return value && SUPPORTED_FORMATS.includes(value.type);
+		})
+		.test("fileSize", "File too large", value => {
+			if (value && typeof value === "string") {
+				return true;
+			}
+			return value && value.size <= FILE_SIZE;
+		}),
 });
 
 const EditListingPage = () => {
