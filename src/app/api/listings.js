@@ -29,11 +29,14 @@ const updateListing = listing => {
 	return client.post(endpoint + "/" + listing.id, data);
 };
 
+const removeListing = listingId => client.delete(endpoint + "/" + listingId);
+
 const listingsApi = {
 	addListing,
 	getListings,
 	getListingDetails,
 	updateListing,
+	removeListing,
 };
 
 export default listingsApi;

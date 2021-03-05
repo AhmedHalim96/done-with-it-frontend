@@ -28,6 +28,16 @@ const ListingDetailsPage = () => {
 		getListing();
 	}, []);
 
+	const removeListing = async () => {
+		const res = await listingsApi.removeListing(listing.id);
+
+		if (!res.ok) {
+			return console.log(res.data);
+		}
+
+		console.log(res.data);
+	};
+
 	return (
 		listing && (
 			<div className="listingDetails">
@@ -43,10 +53,17 @@ const ListingDetailsPage = () => {
 					<Link
 						to={"/update/" + listing.id}
 						className="button button-secondary button-outline"
-						title="Add To Cart"
+						title="Update Listing"
 					>
 						<i className="fa fa-pencil"></i> Edit
 					</Link>
+					<span
+						className="button button-danger button-outline"
+						title="Delete Listing"
+						onClick={removeListing}
+					>
+						<i className="fa fa-trash"></i> Delete
+					</span>
 				</div>
 				<p className="listingDetails__category">
 					Category:{" "}
