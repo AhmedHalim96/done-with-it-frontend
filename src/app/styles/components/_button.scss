@@ -35,6 +35,14 @@
 			background-color: darken($color: $secondary-color, $amount: 5);
 		}
 	}
+
+	&-danger {
+		background-color: $color-red;
+		&:hover {
+			background-color: darken($color: $color-red, $amount: 5);
+		}
+	}
+
 	&-outline {
 		background: transparent;
 		padding: 0;
@@ -55,6 +63,14 @@
 			&:hover {
 				background-color: transparent;
 				color: darken($color: $secondary-color, $amount: 5);
+			}
+		}
+
+		&.button-danger {
+			color: $color-red;
+			&:hover {
+				background-color: transparent;
+				color: darken($color: $color-red, $amount: 5);
 			}
 		}
 	}
