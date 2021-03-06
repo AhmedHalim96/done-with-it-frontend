@@ -8,6 +8,7 @@ import Submit from "../components/forms/Submit";
 import FormSelect from "../components/forms/FormSelect";
 import useCategories from "../hooks/useCategories";
 import listingsApi from "../api/listings";
+import useApi from "../hooks/useApi";
 
 const FILE_SIZE = 2000000;
 const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png"];
@@ -39,13 +40,11 @@ const validationSchema = Yup.object().shape({
 
 const CreateListingPage = () => {
 	const categories = useCategories();
-
+	const { data: listing, error, loading, request: createListing } = useApi(
+		listingsApi.addListing
+	);
 	const addListing = async listing => {
-		const res = await listingsApi.addListing(listing);
-		if (!res.ok) {
-			return console.log(res.data);
-		}
-		console.log(res.data);
+		await createListing(listing);
 	};
 
 	return (

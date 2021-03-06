@@ -1,42 +1,37 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+
 import listingsApi from "../api/listings";
+import useApi from "../hooks/useApi";
 import settings from "../config/settings";
+
+const user = {
+	id: 2,
+	name: "Ahmed Halim",
+	avatar: "http://192.168.1.111:8000/storage/listings/jacket-photo.jpg",
+	listing: 12,
+};
 
 const ListingDetailsPage = () => {
 	const listingId = useParams().listingId;
-	const [listing, setListing] = useState(null);
 
-	const getListing = async () => {
-		const res = await listingsApi.getListingDetails(listingId);
-		if (!res.ok) {
-			return console.log(res.data);
-		}
+	const {
+		data: listing,
+		error: getListingError,
+		loading: getListingLoading,
+		request: getListing,
+	} = useApi(listingsApi.getListingDetails);
 
-		setListing({
-			...res.data,
-			user: {
-				id: 2,
-				name: "Ahmed Halim",
-				avatar: "http://192.168.1.111:8000/storage/listings/jacket-photo.jpg",
-				listing: 12,
-			},
-		});
-	};
+	const {
+		data: deletedListingId,
+		error: deleteListingError,
+		loading: deleteListingLoading,
+		request: deleteListing,
+	} = useApi(listingsApi.removeListing);
 
 	useEffect(() => {
-		getListing();
+		getListing(listingId);
 	}, []);
-
-	const removeListing = async () => {
-		const res = await listingsApi.removeListing(listing.id);
-
-		if (!res.ok) {
-			return console.log(res.data);
-		}
-
-		console.log(res.data);
-	};
 
 	return (
 		listing && (
@@ -60,7 +55,7 @@ const ListingDetailsPage = () => {
 					<span
 						className="button button-danger button-outline"
 						title="Delete Listing"
-						onClick={removeListing}
+						onClick={async () => await deleteListing(listingId)}
 					>
 						<i className="fa fa-trash"></i> Delete
 					</span>
@@ -77,7 +72,7 @@ const ListingDetailsPage = () => {
 				<p className="listingDetails__seller u-mb-2">
 					by{" "}
 					<Link to="#!" className="link link-primary">
-						{listing.user.name}
+						{user.name}
 					</Link>
 				</p>
 				{/* Will be replaced by a carosell */}

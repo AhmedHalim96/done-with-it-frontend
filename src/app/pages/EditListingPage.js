@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import * as Yup from "yup";
+
 import listingsApi from "../api/listings";
+import settings from "../config/settings";
+import useCategories from "../hooks/useCategories";
+import useApi from "../hooks/useApi";
 
 import Form from "../components/forms/Form";
 import FormField from "../components/forms/FormField";
 import FormSelect from "../components/forms/FormSelect";
 import ImageInput from "../components/forms/ImageInput";
 import Submit from "../components/forms/Submit";
-import settings from "../config/settings";
-import useCategories from "../hooks/useCategories";
 
 const FILE_SIZE = 2000000;
 const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png"];
@@ -45,24 +47,19 @@ const validationSchema = Yup.object().shape({
 const EditListingPage = () => {
 	const categories = useCategories();
 	const listingId = useParams().listingId;
-	const [listing, setListing] = useState(null);
+	const {
+		data: listing,
+		error: getListingError,
+		loading: getListingLoading,
+		request: getListing,
+	} = useApi(listingsApi.getListingDetails);
 
-	const getListing = async () => {
-		const res = await listingsApi.getListingDetails(listingId);
-		if (!res.ok) {
-			return console.log(res.data);
-		}
-
-		setListing({
-			...res.data,
-			user: {
-				id: 2,
-				name: "Ahmed Halim",
-				avatar: "http://192.168.1.111:8000/storage/listings/jacket-photo.jpg",
-				listing: 12,
-			},
-		});
-	};
+	const {
+		data: updatedListing,
+		error: editListingError,
+		loading: editListingLoading,
+		request: editListing,
+	} = useApi(listingsApi.updateListing);
 
 	const updateListing = async values => {
 		const updatedListing = {};
@@ -78,14 +75,11 @@ const EditListingPage = () => {
 			return alert("Nothing Changed");
 
 		updatedListing.id = listing.id;
-
-		const res = await listingsApi.updateListing(updatedListing);
-		if (!res.ok) return console.log(res.data);
-		console.log(res.data);
+		await editListing(updatedListing);
 	};
 
 	useEffect(() => {
-		getListing();
+		getListing(listingId);
 	}, []);
 
 	return (
