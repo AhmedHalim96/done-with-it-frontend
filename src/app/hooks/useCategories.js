@@ -6,7 +6,7 @@ const useCategories = () => {
 
 	const getCategories = async () => {
 		const res = await categoriesApi.getCategories();
-		setCategories(res.data);
+		setCategories(res.data.data);
 	};
 	useEffect(() => {
 		getCategories();
