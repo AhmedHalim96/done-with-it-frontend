@@ -4,7 +4,6 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: inherit;
-	transition: inherit;
 }
 
 html {
@@ -31,5 +30,4 @@ body {
 
 .app {
 	font-size: $default-font-size;
-	transition: all 300ms;
 }
