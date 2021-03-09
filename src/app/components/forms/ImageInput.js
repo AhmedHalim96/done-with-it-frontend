@@ -1,66 +1,44 @@
 import React, { useState } from "react";
 import { useFormikContext } from "formik";
 import ErrorMessage from "./ErrorMessage";
+import ImageInputPreviews from "./ImageInputPreviews";
 
-const ImageInput = ({ name, url = [], ...otherProps }) => {
-	const [previews, setPreviews] = useState([]); // either a photo url is given  or null
+const ImageInput = ({ name, ...otherProps }) => {
 	const {
 		errors,
 		touched,
+		values,
 		setFieldValue,
 		setFieldTouched,
 	} = useFormikContext();
-	return (
-		<div className="form__group">
-			{previews && (
-				<div
-					className={`form__imagePreviewsWrapper ${
-						touched[name] && errors[name] ? "" : "u-mb-2"
-					}`}
-				>
-					{previews.map(preview => (
-						<div className="form__imagePreview">
-							<img
-								src={preview}
-								className="form__imagePreviewImg"
-								alt={preview}
-							/>
-							<div
-								className="form__imagePreviewDelete"
-								onClick={() =>
-									setPreviews(previews.filter(current => preview !== current))
-								}
-								title="Remove"
-							>
-								<i className="fa fa-trash"></i>
-							</div>
-						</div>
-					))}
 
-					<label
-						className="form__imageLabel"
-						htmlFor={name}
-						title="Add a picture"
-					>
-						<i className="fa fa-camera"></i>
-					</label>
-				</div>
-			)}
+	const photos = values[name];
+	const removeImage = selectedPhoto => {
+		setFieldValue(
+			name,
+			photos.filter(photo => photo !== selectedPhoto)
+		);
+	};
+
+	console.log(errors[name]);
+	return (
+		<div
+			className={`form__group ${touched[name] && errors[name] ? "" : "u-mb-2"}`}
+		>
+			<ImageInputPreviews
+				photos={photos}
+				removePhoto={removeImage}
+				htmlFor={name}
+			/>
 			<input
-				className={`form__image`}
+				className="form__image"
 				id={name}
 				name={name}
 				type="file"
 				onChange={e => {
 					const files = e.target.files;
-					const previewsList = [];
-					for (let i = 0; i < files.length; i++) {
-						const file = files[i];
-						previewsList.push(URL.createObjectURL(file));
-					}
-					setPreviews([...previews, ...previewsList]);
 					setFieldTouched(name, true);
-					setFieldValue(name, files);
+					setFieldValue(name, [...photos, ...files]);
 				}}
 				{...otherProps}
 			/>
