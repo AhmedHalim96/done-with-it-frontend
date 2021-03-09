@@ -92,7 +92,7 @@ const CreateListingPage = () => {
 					rows="12"
 				/>
 
-				<Submit title="Update Listing" className="button-block" />
+				<Submit title="Create Listing" className="button-block" />
 			</Form>
 		</div>
 	);
