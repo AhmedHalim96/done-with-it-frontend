@@ -24,17 +24,26 @@ const validationSchema = Yup.object().shape({
 	categoryId: Yup.number()
 		.label("Category")
 		.required("You must choose a category"),
-	photo: Yup.mixed()
-		.required("A Photo is required")
-		.test(
-			"fileFormat",
-			"Unsupported Format",
-			value => value && SUPPORTED_FORMATS.includes(value.type)
-		)
-		.test(
-			"fileSize",
-			"File too large",
-			value => value && value.size <= FILE_SIZE
+	photos: Yup.array()
+		.test("arrayLength", "At least one image is required", images => {
+			return images.length > 0;
+		})
+		.test("arrayLength", "Up to 5 images are allowed", images => {
+			console.log(images);
+			return images.length <= 5;
+		})
+		.of(
+			Yup.mixed()
+				.test(
+					"fileFormat",
+					"Unsupported Format",
+					value => value && SUPPORTED_FORMATS.includes(value.type)
+				)
+				.test(
+					"fileSize",
+					"File too large",
+					value => value && value.size <= FILE_SIZE
+				)
 		),
 });
 
@@ -55,14 +64,14 @@ const CreateListingPage = () => {
 				initialValues={{
 					description: "",
 					categoryId: "",
-					photo: "",
+					photos: [],
 					price: 1,
 					title: "",
 				}}
 				onSubmit={addListing}
 				validationSchema={validationSchema}
 			>
-				<ImageInput name="photo" />
+				<ImageInput name="photos" />
 				<FormField block type="text" name="title" label="Title" />
 				<FormField
 					label="Price"
