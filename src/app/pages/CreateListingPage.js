@@ -29,7 +29,6 @@ const validationSchema = Yup.object().shape({
 			return images.length > 0;
 		})
 		.test("arrayLength", "Up to 5 images are allowed", images => {
-			console.log(images);
 			return images.length <= 5;
 		})
 		.of(
