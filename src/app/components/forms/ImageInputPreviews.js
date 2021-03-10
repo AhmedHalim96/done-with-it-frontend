@@ -3,8 +3,8 @@ import React from "react";
 const ImageInputPreviews = ({ photos, removePhoto, ...otherProps }) => {
 	return (
 		<div className="form__imagePreviewsWrapper">
-			{photos.map(photo => (
-				<div className="form__imagePreview">
+			{photos.map((photo, i) => (
+				<div className="form__imagePreview" key={i}>
 					<img
 						src={URL.createObjectURL(photo)}
 						className="form__imagePreviewImg"
