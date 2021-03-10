@@ -12,8 +12,7 @@ const addListing = listing => {
 	data.append("price", listing.price);
 	data.append("description", listing.description);
 	data.append("category_id", listing.categoryId);
-	data.append("photos", listing.photos);
-
+	listing.photos.map(photo => data.append("photos[]", photo));
 	return client.post(endpoint, data);
 };
 
