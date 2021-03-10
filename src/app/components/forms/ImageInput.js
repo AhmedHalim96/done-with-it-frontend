@@ -19,8 +19,6 @@ const ImageInput = ({ name, ...otherProps }) => {
 			photos.filter(photo => photo !== selectedPhoto)
 		);
 	};
-
-	console.log(errors[name]);
 	return (
 		<div
 			className={`form__group ${touched[name] && errors[name] ? "" : "u-mb-2"}`}
