@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import listingsApi from "../api/listings";
 import useApi from "../hooks/useApi";
 import settings from "../config/settings";
+import ImageSlider from "../components/ImageSlider";
 
 const user = {
 	id: 2,
@@ -75,12 +76,12 @@ const ListingDetailsPage = () => {
 						{user.name}
 					</Link>
 				</p>
+
 				{/* Will be replaced by a carosell */}
-				<img
-					src={settings.baseUrl + listing.photo}
-					alt={listing.title}
-					className="listingDetails__photo"
+				<ImageSlider
+					images={listing.photos.map(image => settings.baseUrl + image.url)}
 				/>
+
 				<p className="listingDetails__description">{listing.description}</p>
 			</div>
 		)
