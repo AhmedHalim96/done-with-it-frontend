@@ -77,7 +77,6 @@ const ListingDetailsPage = () => {
 					</Link>
 				</p>
 
-				{/* Will be replaced by a carosell */}
 				<ImageSlider
 					images={listing.photos.map(image => settings.baseUrl + image.url)}
 				/>
