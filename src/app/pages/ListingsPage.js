@@ -22,7 +22,7 @@ const ListingsPage = () => {
 					{listings.map(listing => (
 						<Link to={"/listings/" + listing.id} key={listing.id}>
 							<Card
-								image={settings.baseUrl + listing.photo}
+								image={settings.baseUrl + listing.photos[0].url}
 								title={listing.title}
 								subtitle={listing.price + "$"}
 								details={
