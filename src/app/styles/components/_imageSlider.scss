@@ -68,6 +68,9 @@
 	&__imageWrapper {
 		width: 100%;
 		height: 50rem;
+		@include respond(phone-port) {
+			height: 30rem;
+		}
 	}
 	&__image {
 		height: 100%;
