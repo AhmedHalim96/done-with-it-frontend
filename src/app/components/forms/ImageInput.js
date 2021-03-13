@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { useFormikContext } from "formik";
+
 import ErrorMessage from "./ErrorMessage";
 import ImageInputPreviews from "./ImageInputPreviews";
 
@@ -13,19 +14,27 @@ const ImageInput = ({ name, ...otherProps }) => {
 	} = useFormikContext();
 
 	const photos = values[name];
-	const removeImage = selectedPhoto => {
+	const removedPhotos = values["removedPhotos"];
+
+	const removePhoto = removedPhoto => {
 		setFieldValue(
 			name,
-			photos.filter(photo => photo !== selectedPhoto)
+			photos.filter(photo => photo !== removedPhoto)
 		);
+
+		// add removedPhotos id to a removed photos list to be deleted from the server
+		if (removedPhoto.url) {
+			setFieldValue("removedPhotos", [...removedPhotos, removedPhoto.id]);
+		}
 	};
+
 	return (
 		<div
 			className={`form__group ${touched[name] && errors[name] ? "" : "u-mb-2"}`}
 		>
 			<ImageInputPreviews
 				photos={photos}
-				removePhoto={removeImage}
+				removePhoto={removePhoto}
 				htmlFor={name}
 			/>
 			<input

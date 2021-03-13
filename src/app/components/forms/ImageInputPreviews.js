@@ -1,4 +1,5 @@
 import React from "react";
+import settings from "../../config/settings";
 
 const ImageInputPreviews = ({ photos, removePhoto, ...otherProps }) => {
 	return (
@@ -6,9 +7,13 @@ const ImageInputPreviews = ({ photos, removePhoto, ...otherProps }) => {
 			{photos.map((photo, i) => (
 				<div className="form__imagePreview" key={i}>
 					<img
-						src={URL.createObjectURL(photo)}
+						src={
+							photo.url
+								? settings.baseUrl + photo.url
+								: URL.createObjectURL(photo)
+						}
 						className="form__imagePreviewImg"
-						alt={photo.name}
+						alt={photo.url}
 					/>
 					<div
 						className="form__imagePreviewDelete"

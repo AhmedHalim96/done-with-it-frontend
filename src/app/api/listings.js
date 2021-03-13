@@ -22,7 +22,11 @@ const updateListing = listing => {
 	if (listing.price) data.append("price", listing.price);
 	if (listing.description) data.append("description", listing.description);
 	if (listing.categoryId) data.append("category_id", listing.categoryId);
-	if (listing.photo) data.append("photo", listing.photo);
+	if (listing.photos)
+		listing.photos.map(photo => data.append("photos[]", photo));
+
+	if (listing.removedPhotos)
+		listing.removedPhotos.map(photo => data.append("deleted_photos[]", photo));
 
 	data.append("_method", "PATCH");
 	return client.post(endpoint + "/" + listing.id, data);

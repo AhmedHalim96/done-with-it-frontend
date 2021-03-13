@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import * as Yup from "yup";
 
 import listingsApi from "../api/listings";
-import settings from "../config/settings";
 import useCategories from "../hooks/useCategories";
 import useApi from "../hooks/useApi";
 
@@ -27,21 +26,30 @@ const validationSchema = Yup.object().shape({
 		.label("Category")
 		.required("You must choose a category"),
 	description: Yup.string().label("Description").min(5).max(255),
-	photo: Yup.mixed()
-		.required("A Photo is required")
-		.test("fileFormat", "Unsupported Format", value => {
-			if (value && typeof value === "string") {
-				return true;
-			}
-
-			return value && SUPPORTED_FORMATS.includes(value.type);
+	photos: Yup.array()
+		.test("arrayLength", "At least one image is required", images => {
+			return images.length > 0;
 		})
-		.test("fileSize", "File too large", value => {
-			if (value && typeof value === "string") {
-				return true;
-			}
-			return value && value.size <= FILE_SIZE;
-		}),
+		.test("arrayLength", "Up to 5 images are allowed", images => {
+			return images.length <= 5;
+		})
+		.of(
+			Yup.mixed()
+				.required("A Photo is required")
+				.test("fileFormat", "Unsupported Format", value => {
+					if (value.url) {
+						return true;
+					}
+
+					return value && SUPPORTED_FORMATS.includes(value.type);
+				})
+				.test("fileSize", "File too large", value => {
+					if (value.url) {
+						return true;
+					}
+					return value && value.size <= FILE_SIZE;
+				})
+		),
 });
 
 const EditListingPage = () => {
@@ -63,11 +71,20 @@ const EditListingPage = () => {
 
 	const updateListing = async values => {
 		const updatedListing = {};
+
 		if (values.title !== listing.title) updatedListing.title = values.title;
-		if (values.photo !== listing.photo) updatedListing.photo = values.photo;
+
 		if (values.price !== listing.price) updatedListing.price = values.price;
+
+		const photos = values.photos.filter(photo => !photo.url);
+		if (photos.length) updatedListing.photos = photos;
+
+		if (values.removedPhotos.length)
+			updatedListing.removedPhotos = values.removedPhotos;
+
 		if (values.description !== listing.description)
 			updatedListing.description = values.description;
+
 		if (values.categoryId !== listing.category.id)
 			updatedListing.categoryId = values.categoryId;
 
@@ -90,7 +107,8 @@ const EditListingPage = () => {
 					className="editListing__form"
 					initialValues={{
 						description: listing.description,
-						photo: listing.photo,
+						photos: listing.photos,
+						removedPhotos: [],
 						price: listing.price,
 						title: listing.title,
 						categoryId: listing.category.id,
@@ -98,7 +116,7 @@ const EditListingPage = () => {
 					onSubmit={updateListing}
 					validationSchema={validationSchema}
 				>
-					<ImageInput name="photo" url={settings.baseUrl + listing.photo} />
+					<ImageInput name="photos" />
 					<FormField block type="text" name="title" label="Title" />
 					<FormField
 						label="Price"
