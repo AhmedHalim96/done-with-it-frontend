@@ -8,10 +8,9 @@
 		color: $primary-color;
 		font-size: 3rem;
 		display: inline-block;
-		position: relative;
-		&::after {
-			@include partial-line-after;
-		}
+		margin-left: auto;
+
+		@include partial-line-after;
 	}
 
 	&__form {
