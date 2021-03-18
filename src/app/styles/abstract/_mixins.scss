@@ -18,12 +18,15 @@
 }
 
 @mixin partial-line-after {
-	content: "";
-	border: 0.1rem solid $primary-color;
-	width: 50%;
-	display: inline-block;
-	margin-top: 3rem;
-	@include center;
+	position: relative;
+	&::after {
+		content: "";
+		border: 0.1rem solid $primary-color;
+		width: 50%;
+		display: inline-block;
+		margin-top: 3rem;
+		@include center;
+	}
 }
 
 @mixin flex-center {
