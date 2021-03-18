@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Masonry } from "masonic";
 
 import Card from "../components/Card";
 import listingsApi from "../api/listings";
@@ -18,21 +19,33 @@ const ListingsPage = () => {
 	return (
 		listings && (
 			<div className="listings">
-				<div className="listings__feed">
-					{listings.map(listing => (
-						<Link to={"/listings/" + listing.id} key={listing.id}>
-							<Card
-								image={settings.baseUrl + listing.photos[0].url}
-								title={listing.title}
-								subtitle={listing.price + "$"}
-								details={
-									listing.description
-										? listing.description.substr(0, 80) + "..."
-										: null
-								}
-							/>{" "}
-						</Link>
-					))}
+				<h1 className="listings__header">Discover our latest listings!</h1>
+				<div className="listings__feedWrapper">
+					{" "}
+					<Masonry
+						items={listings}
+						className="listings__feed"
+						columnWidth={450}
+						columnGutter={10}
+						render={({ i, data: listing, width }) => (
+							<Link
+								to={"/listings/" + listing.id}
+								key={listing.id}
+								className="listings__feedItem u-mb-1"
+							>
+								<Card
+									image={settings.baseUrl + listing.photos[0].url}
+									title={listing.title}
+									subtitle={listing.price + "$"}
+									details={
+										listing.description
+											? listing.description.substr(0, 80) + "..."
+											: null
+									}
+								/>
+							</Link>
+						)}
+					/>
 				</div>
 			</div>
 		)
