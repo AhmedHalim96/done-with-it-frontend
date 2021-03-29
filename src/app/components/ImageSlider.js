@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from "react";
+import LightBox from "./LightBox";
 
 const ImageSlider = ({ images }) => {
 	const [currentImageIndex, setCurrentImageIndex] = useState(0);
+	const [isLightBoxVisible, setIsShowLightBoxVisible] = useState(false);
+
 	const isFirst = currentImageIndex <= 0;
 	const isLast = currentImageIndex >= images.length - 1;
-	const next = () => setCurrentImageIndex(currentImageIndex + 1);
 
+	const next = () => setCurrentImageIndex(currentImageIndex + 1);
 	const previous = () => setCurrentImageIndex(currentImageIndex - 1);
+
+	const showLightBox = () => setIsShowLightBoxVisible(true);
+	const hideLightBox = () => setIsShowLightBoxVisible(false);
+
 	// const slideShow = () => {
 	// 	if (isLast) {
 	// 		console.log("object");
@@ -22,6 +29,9 @@ const ImageSlider = ({ images }) => {
 
 	return (
 		<div className="imageSlider">
+			{isLightBoxVisible && (
+				<LightBox current={images[currentImageIndex]} close={hideLightBox} />
+			)}
 			<div className="imageSlider__overlay" />
 			{!isFirst && (
 				<span className="imageSlider__previous" onClick={previous}>
@@ -37,6 +47,7 @@ const ImageSlider = ({ images }) => {
 						className={`imageSlider__image ${
 							i === currentImageIndex ? "imageSlider__image-selected" : ""
 						}`}
+						onClick={showLightBox}
 					/>
 				))}
 			</div>
