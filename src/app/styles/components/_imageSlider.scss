@@ -1,6 +1,11 @@
 .imageSlider {
 	background-color: rgba($color: #000000, $alpha: 0.9);
 	max-width: 100rem;
+	height: 50rem;
+	@include respond(phone-port) {
+		height: 30rem;
+	}
+
 	position: relative;
 	transition: all 300ms;
 
@@ -25,18 +30,21 @@
 	&__next,
 	&__previous {
 		align-items: center;
+		background-color: $color-white;
 		border-radius: 50%;
 		display: flex;
 		height: 6rem;
 		justify-content: center;
+		opacity: 0.7;
 		position: absolute;
 		top: 50%;
 		transform: translateY(-50%);
 		width: 6rem;
+		z-index: 1;
 
 		&:hover {
-			background-color: rgba($color: $primary-color, $alpha: 0.2);
 			cursor: pointer;
+			opacity: 0.9;
 		}
 	}
 
@@ -47,12 +55,11 @@
 
 	&__previous {
 		margin-left: 2rem;
-		z-index: 2;
 	}
 
 	&__nextArrow,
 	&__previousArrow {
-		background-color: $color-white;
+		background-color: $color-black;
 		height: 2.5rem;
 		width: 2.5rem;
 	}
@@ -66,17 +73,15 @@
 	}
 
 	&__imageWrapper {
-		width: 100%;
-		height: 50rem;
-		@include respond(phone-port) {
-			height: 30rem;
-		}
+		max-width: 90%;
+		height: 100%;
 	}
 	&__image {
+		cursor: pointer;
 		height: 100%;
-		width: auto;
-		transition: inherit;
+		max-width: 100%;
 		opacity: 0;
+		transition: inherit;
 		@include center;
 		&-selected {
 			opacity: 1;
@@ -90,7 +95,6 @@
 		margin-bottom: 2rem;
 		position: absolute;
 		transform: translateX(-50%) translateY(-50%);
-		z-index: 3;
 
 		&:last-child {
 			margin-right: 0;
@@ -99,15 +103,15 @@
 	&__navItem {
 		background-color: $color-white;
 		border-radius: 50%;
-		height: 1.2rem;
+		height: 1.6rem;
 		margin-right: 0.5rem;
-		width: 1.2rem;
+		width: 1.6rem;
 
 		&-selected {
-			background-color: $primary-color;
+			background-color: $color-black;
 		}
 		&:hover {
-			background-color: lighten($primary-color, 10);
+			background-color: lighten($color-black, 50);
 			cursor: pointer;
 		}
 	}
