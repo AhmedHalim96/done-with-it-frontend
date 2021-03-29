@@ -1,14 +1,17 @@
 .navbar {
 	align-items: center;
 	background: $primary-color;
-	box-shadow: 0.1rem 0.1rem 2rem lighten($color: $color-black, $amount: 50);
+	box-shadow: 0.2rem 0.2rem 1rem lighten($color: #000000, $amount: 10);
 	color: $color-light-grey;
 	display: flex;
 	height: $navbar-height;
 	padding-right: 1rem;
 	padding-left: 1rem;
-	position: relative;
+	position: fixed;
+	top: 0;
+	left: 0;
 	width: 100%;
+	z-index: 2;
 
 	&__logo {
 		align-items: center;

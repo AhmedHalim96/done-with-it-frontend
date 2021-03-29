@@ -33,7 +33,13 @@ const App = () => {
 				>
 					<Navbar />
 					<Sidebar />
-					{authenticated ? <AuthenticatedRoutes /> : <NonAuthenticatedRoutes />}
+					<main>
+						{authenticated ? (
+							<AuthenticatedRoutes />
+						) : (
+							<NonAuthenticatedRoutes />
+						)}
+					</main>
 				</AuthContext.Provider>
 			</LayoutContext.Provider>
 		</div>

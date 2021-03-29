@@ -28,6 +28,10 @@ body {
 	background-color: $bg-color;
 }
 
+main {
+	margin-top: $navbar-height;
+}
+
 .app {
 	font-size: $default-font-size;
 }
