@@ -256,3 +256,7 @@
 .u-slide-left {
 	animation: slideLeft 0.5s forwards;
 }
+.u-no-scrolling {
+	height: 100vh !important;
+	overflow: hidden !important;
+}

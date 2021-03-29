@@ -14,7 +14,7 @@ const App = () => {
 	const [authenticated, setAuthenticated] = useState(true);
 
 	return (
-		<div className="app">
+		<div className="app u-no-scrolling">
 			<LayoutContext.Provider
 				value={{
 					isSidebarOpen: sidebarState,
