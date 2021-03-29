@@ -1,6 +1,6 @@
 import React from "react";
 
-const Backdrop = ({ close, children }) => {
+const Backdrop = ({ close }) => {
 	return <div className="backdrop" onClick={close} />;
 };
 
