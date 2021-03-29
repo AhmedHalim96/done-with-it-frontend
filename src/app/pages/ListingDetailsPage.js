@@ -81,7 +81,9 @@ const ListingDetailsPage = () => {
 					images={listing.photos.map(image => settings.baseUrl + image.url)}
 				/>
 
-				<p className="listingDetails__description">{listing.description}</p>
+				<p className="listingDetails__description u-mt-2">
+					{listing.description}
+				</p>
 			</div>
 		)
 	);
