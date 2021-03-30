@@ -1,0 +1,35 @@
+.modal {
+	background-color: $color-white;
+	border-radius: 0.5rem;
+	min-width: 40rem;
+	max-width: 50vw;
+	z-index: 11;
+	@include fixed-center;
+
+	&__body {
+		margin: 1rem;
+		padding: 1rem;
+		margin-top: 5rem;
+		background-color: lighten($color-yellow, 30);
+	}
+
+	&__close {
+		font-size: 2.5rem;
+		position: absolute;
+		color: lighten($color: $color-medium-grey, $amount: 0);
+		cursor: pointer;
+		top: 2rem;
+		right: 2rem;
+
+		&:hover {
+			color: darken($color: $color-medium-grey, $amount: 10);
+		}
+	}
+
+	&__footer {
+		margin: 1rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+}
