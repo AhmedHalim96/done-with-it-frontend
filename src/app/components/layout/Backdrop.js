@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import LayoutContext from "../../layout/context";
 
-const Backdrop = ({ close }) => {
+const Backdrop = ({ close, className = "" }) => {
 	const { setScrolling } = useContext(LayoutContext);
 
 	useEffect(() => {
@@ -16,7 +16,7 @@ const Backdrop = ({ close }) => {
 		setScrolling(true);
 		close();
 	};
-	return <div className="backdrop" onClick={handleClose} />;
+	return <div className={"backdrop " + className} onClick={handleClose} />;
 };
 
 export default Backdrop;
