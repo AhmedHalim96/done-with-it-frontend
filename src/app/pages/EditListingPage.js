@@ -105,7 +105,7 @@ const EditListingPage = () => {
 			<div className="editListing">
 				{(updateListingLoading || getListingLoading) && (
 					<Spinner
-						loading={updateListingLoading}
+						loading={updateListingLoading || getListingLoading}
 						backdrop={updateListingLoading}
 					/>
 				)}
