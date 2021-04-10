@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 
+import Spinner from "../components/layout/Spinner";
 import listingsApi from "../api/listings";
 import useApi from "../hooks/useApi";
 import settings from "../config/settings";
@@ -35,57 +36,65 @@ const ListingDetailsPage = () => {
 	}, []);
 
 	return (
-		listing && (
-			<div className="listingDetails">
-				<div className="listingDetails__top">
-					<h2 className="listingDetails__title">{listing.title} </h2>
-					<span className="listingDetails__price">{listing.price}$</span>
-					<span
-						className="button button-primary button-outline listingDetails__addToCart"
-						title="Add To Cart"
-					>
-						<i className="fa fa-shopping-cart"></i> +
-					</span>
-					<Link
-						to={"/update/" + listing.id}
-						className="button button-secondary button-outline"
-						title="Update Listing"
-					>
-						<i className="fa fa-pencil"></i> Edit
-					</Link>
-					<span
-						className="button button-danger button-outline"
-						title="Delete Listing"
-						onClick={async () => await deleteListing(listingId)}
-					>
-						<i className="fa fa-trash"></i> Delete
-					</span>
-				</div>
-				<p className="listingDetails__category">
-					Category:{" "}
-					<Link
-						to={"/categories/" + listing.category.id}
-						className="link link-secondary"
-					>
-						{listing.category.title}
-					</Link>
-				</p>
-				<p className="listingDetails__seller u-mb-2">
-					by{" "}
-					<Link to="#!" className="link link-primary">
-						{user.name}
-					</Link>
-				</p>
-
-				<ImageSlider
-					images={listing.photos.map(image => settings.baseUrl + image.url)}
+		<>
+			{(getListingLoading || deleteListingLoading) && (
+				<Spinner
+					loading={getListingLoading || deleteListingLoading}
+					backdrop={deleteListingLoading}
 				/>
+			)}
+			{listing && (
+				<div className="listingDetails">
+					<div className="listingDetails__top">
+						<h2 className="listingDetails__title">{listing.title} </h2>
+						<span className="listingDetails__price">{listing.price}$</span>
+						<span
+							className="button button-primary button-outline listingDetails__addToCart"
+							title="Add To Cart"
+						>
+							<i className="fa fa-shopping-cart"></i> +
+						</span>
+						<Link
+							to={"/update/" + listing.id}
+							className="button button-secondary button-outline"
+							title="Update Listing"
+						>
+							<i className="fa fa-pencil"></i> Edit
+						</Link>
+						<span
+							className="button button-danger button-outline"
+							title="Delete Listing"
+							onClick={async () => await deleteListing(listingId)}
+						>
+							<i className="fa fa-trash"></i> Delete
+						</span>
+					</div>
+					<p className="listingDetails__category">
+						Category:{" "}
+						<Link
+							to={"/categories/" + listing.category.id}
+							className="link link-secondary"
+						>
+							{listing.category.title}
+						</Link>
+					</p>
+					<p className="listingDetails__seller u-mb-2">
+						by{" "}
+						<Link to="#!" className="link link-primary">
+							{user.name}
+						</Link>
+					</p>
 
-				<p className="listingDetails__description u-mt-2">
-					{listing.description}
-				</p>
-			</div>
-		)
+					<ImageSlider
+						images={listing.photos.map(image => settings.baseUrl + image.url)}
+					/>
+
+					<p className="listingDetails__description u-mt-2">
+						{listing.description}
+					</p>
+				</div>
+			)}
+		</>
 	);
 };
 
