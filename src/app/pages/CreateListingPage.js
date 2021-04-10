@@ -1,4 +1,5 @@
 import React from "react";
+import { Redirect, useHistory } from "react-router-dom";
 import * as Yup from "yup";
 
 import Form from "../components/forms/Form";
@@ -9,6 +10,7 @@ import FormSelect from "../components/forms/FormSelect";
 import useCategories from "../hooks/useCategories";
 import listingsApi from "../api/listings";
 import useApi from "../hooks/useApi";
+import Spinner from "../components/layout/Spinner";
 
 const FILE_SIZE = 2000000;
 const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png"];
@@ -48,15 +50,24 @@ const validationSchema = Yup.object().shape({
 
 const CreateListingPage = () => {
 	const categories = useCategories();
-	const { data: listing, error, loading, request: createListing } = useApi(
-		listingsApi.addListing
-	);
+	const history = useHistory();
+	const {
+		data: createdListing,
+		error,
+		loading,
+		request: createListing,
+	} = useApi(listingsApi.addListing);
+
 	const addListing = async listing => {
 		await createListing(listing);
+		// BUG: returened object is null
+		if (error) return console.log(error);
+		history.push("/listings/" + createdListing.id);
 	};
 
 	return (
 		<div className="createListing">
+			{loading && <Spinner loading={loading} backdrop />}
 			<h1 className="createListing__title">Create a New Listing</h1>
 			<Form
 				className="createListing__form"
