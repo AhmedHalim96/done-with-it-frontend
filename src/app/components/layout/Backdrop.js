@@ -13,8 +13,7 @@ const Backdrop = ({ close, className = "" }) => {
 	useEffect(() => () => setScrolling(true), []);
 
 	const handleClose = () => {
-		setScrolling(true);
-		close();
+		if (close) close();
 	};
 	return <div className={"backdrop " + className} onClick={handleClose} />;
 };
