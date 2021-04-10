@@ -11,6 +11,7 @@ import FormField from "../components/forms/FormField";
 import FormSelect from "../components/forms/FormSelect";
 import ImageInput from "../components/forms/ImageInput";
 import Submit from "../components/forms/Submit";
+import Spinner from "../components/layout/Spinner";
 
 const FILE_SIZE = 2000000;
 const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png"];
@@ -64,8 +65,8 @@ const EditListingPage = () => {
 
 	const {
 		data: updatedListing,
-		error: editListingError,
-		loading: editListingLoading,
+		error: updateListingError,
+		loading: updateListingLoading,
 		request: editListing,
 	} = useApi(listingsApi.updateListing);
 
@@ -102,6 +103,12 @@ const EditListingPage = () => {
 	return (
 		listing && (
 			<div className="editListing">
+				{(updateListingLoading || getListingLoading) && (
+					<Spinner
+						loading={updateListingLoading}
+						backdrop={updateListingLoading}
+					/>
+				)}
 				<h1 className="editListing__title">Edit Listing</h1>
 				<Form
 					className="editListing__form"
