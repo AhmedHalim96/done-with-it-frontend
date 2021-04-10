@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
 
 import Spinner from "../components/layout/Spinner";
 import listingsApi from "../api/listings";
@@ -16,6 +16,7 @@ const user = {
 
 const ListingDetailsPage = () => {
 	const listingId = useParams().listingId;
+	const redirect = useHistory().push;
 
 	const {
 		data: listing,
@@ -30,6 +31,11 @@ const ListingDetailsPage = () => {
 		loading: deleteListingLoading,
 		request: deleteListing,
 	} = useApi(listingsApi.removeListing);
+
+	const removeListing = async () => {
+		await deleteListing(listingId);
+		redirect("/");
+	};
 
 	useEffect(() => {
 		getListing(listingId);
@@ -64,7 +70,7 @@ const ListingDetailsPage = () => {
 						<span
 							className="button button-danger button-outline"
 							title="Delete Listing"
-							onClick={async () => await deleteListing(listingId)}
+							onClick={removeListing}
 						>
 							<i className="fa fa-trash"></i> Delete
 						</span>

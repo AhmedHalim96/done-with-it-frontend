@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import * as Yup from "yup";
 
 import listingsApi from "../api/listings";
@@ -56,6 +56,7 @@ const validationSchema = Yup.object().shape({
 const EditListingPage = () => {
 	const categories = useCategories();
 	const listingId = useParams().listingId;
+	const redirect = useHistory().push;
 	const {
 		data: listing,
 		error: getListingError,
@@ -94,6 +95,7 @@ const EditListingPage = () => {
 
 		updatedListing.id = listing.id;
 		await editListing(updatedListing);
+		redirect("/listings/" + listingId);
 	};
 
 	useEffect(() => {

@@ -50,19 +50,18 @@ const validationSchema = Yup.object().shape({
 
 const CreateListingPage = () => {
 	const categories = useCategories();
-	const history = useHistory();
-	const {
-		data: createdListing,
-		error,
-		loading,
-		request: createListing,
-	} = useApi(listingsApi.addListing);
+	const redirect = useHistory().push;
+	const { error, loading, request: createListing } = useApi(
+		listingsApi.addListing
+	);
 
 	const addListing = async listing => {
-		await createListing(listing);
-		// BUG: returened object is null
+		// work around
+		const {
+			data: { data: createdListing },
+		} = await createListing(listing);
 		if (error) return console.log(error);
-		history.push("/listings/" + createdListing.id);
+		redirect("/listings/" + createdListing.id);
 	};
 
 	return (
