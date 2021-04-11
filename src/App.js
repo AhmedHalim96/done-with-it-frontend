@@ -33,7 +33,7 @@ const App = () => {
 				>
 					<Navbar />
 					<Sidebar />
-					<main>
+					<main className="u-pt-2">
 						{authenticated ? (
 							<AuthenticatedRoutes />
 						) : (
