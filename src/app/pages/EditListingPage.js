@@ -6,6 +6,7 @@ import listingsApi from "../api/listings";
 import useCategories from "../hooks/useCategories";
 import useApi from "../hooks/useApi";
 
+import Alert from "../components/Alert";
 import Form from "../components/forms/Form";
 import FormField from "../components/forms/FormField";
 import FormSelect from "../components/forms/FormSelect";
@@ -60,18 +61,21 @@ const EditListingPage = () => {
 	const {
 		data: listing,
 		error: getListingError,
+		errorMessage: getListingErrorMessage,
 		loading: getListingLoading,
 		request: getListing,
 	} = useApi(listingsApi.getListingDetails);
 
 	const {
 		data: updatedListing,
+		errorMessage: updateListingErrorMessage,
 		error: updateListingError,
 		loading: updateListingLoading,
 		request: editListing,
 	} = useApi(listingsApi.updateListing);
 
-	const updateListing = async values => {
+	const _error = getListingError || updateListingError;
+	const _updateListing = async values => {
 		const updatedListing = {};
 
 		if (values.title !== listing.title) updatedListing.title = values.title;
@@ -103,55 +107,65 @@ const EditListingPage = () => {
 	}, []);
 
 	return (
-		listing && (
-			<div className="editListing">
-				{(updateListingLoading || getListingLoading) && (
-					<Spinner
-						loading={updateListingLoading || getListingLoading}
-						backdrop={updateListingLoading}
-					/>
-				)}
-				<h1 className="editListing__title">Edit Listing</h1>
-				<Form
-					className="editListing__form"
-					initialValues={{
-						description: listing.description,
-						photos: listing.photos,
-						removedPhotos: [],
-						price: listing.price,
-						title: listing.title,
-						categoryId: listing.category.id,
-					}}
-					onSubmit={updateListing}
-					validationSchema={validationSchema}
-				>
-					<ImageInput name="photos" />
-					<FormField block type="text" name="title" label="Title" />
-					<FormField
-						label="Price"
-						min="1"
-						max="1000"
-						name="price"
-						type="number"
-						suffix="$"
-					/>
+		<>
+			{(updateListingLoading || getListingLoading) && (
+				<Spinner
+					loading={updateListingLoading || getListingLoading}
+					backdrop={updateListingLoading}
+				/>
+			)}
 
-					<FormSelect items={categories} name="categoryId" label="Categories" />
+			{_error && (
+				<Alert message={getListingErrorMessage || updateListingErrorMessage} />
+			)}
+			{listing && (
+				<div className="editListing">
+					<h1 className="editListing__title">Edit Listing</h1>
+					<Form
+						className="editListing__form"
+						initialValues={{
+							description: listing.description,
+							photos: listing.photos,
+							removedPhotos: [],
+							price: listing.price,
+							title: listing.title,
+							categoryId: listing.category.id,
+						}}
+						onSubmit={_updateListing}
+						validationSchema={validationSchema}
+					>
+						<ImageInput name="photos" />
+						<FormField block type="text" name="title" label="Title" />
+						<FormField
+							label="Price"
+							min="1"
+							max="1000"
+							name="price"
+							type="number"
+							suffix="$"
+						/>
 
-					<FormField
-						block
-						className="form__textarea"
-						component="textarea"
-						label="Description"
-						name="description"
-						placeholder="Description"
-						rows="12"
-					/>
+						<FormSelect
+							items={categories}
+							name="categoryId"
+							label="Categories"
+						/>
 
-					<Submit title="Update Listing" className="button-block" />
-				</Form>
-			</div>
-		)
+						<FormField
+							block
+							className="form__textarea"
+							component="textarea"
+							label="Description"
+							name="description"
+							placeholder="Description"
+							rows="12"
+						/>
+
+						<Submit title="Update Listing" className="button-block" />
+					</Form>
+				</div>
+			)}
+		</>
 	);
 };
 

@@ -6,6 +6,7 @@ import listingsApi from "../api/listings";
 import useApi from "../hooks/useApi";
 import settings from "../config/settings";
 import ImageSlider from "../components/ImageSlider";
+import Alert from "../components/Alert";
 
 const user = {
 	id: 2,
@@ -21,6 +22,7 @@ const ListingDetailsPage = () => {
 	const {
 		data: listing,
 		error: getListingError,
+		errorMessage: getListingErrorMessage,
 		loading: getListingLoading,
 		request: getListing,
 	} = useApi(listingsApi.getListingDetails);
@@ -28,27 +30,33 @@ const ListingDetailsPage = () => {
 	const {
 		data: deletedListingId,
 		error: deleteListingError,
+		errorMessage: deleteListingErrorMessage,
 		loading: deleteListingLoading,
 		request: deleteListing,
 	} = useApi(listingsApi.removeListing);
 
-	const removeListing = async () => {
+	const _error = getListingError || deleteListingError;
+	const _loading = getListingLoading || deleteListingLoading;
+	const _getListing = async () => await getListing(listingId);
+	const _removeListing = async () => {
 		await deleteListing(listingId);
 		redirect("/");
 	};
 
 	useEffect(() => {
-		getListing(listingId);
+		_getListing();
 	}, []);
 
 	return (
 		<>
-			{(getListingLoading || deleteListingLoading) && (
-				<Spinner
-					loading={getListingLoading || deleteListingLoading}
-					backdrop={deleteListingLoading}
-				/>
+			{_loading && (
+				<Spinner loading={_loading} backdrop={deleteListingLoading} />
 			)}
+
+			{_error && (
+				<Alert message={getListingErrorMessage || deleteListingErrorMessage} />
+			)}
+
 			{listing && (
 				<div className="listingDetails">
 					<div className="listingDetails__top">
@@ -70,7 +78,7 @@ const ListingDetailsPage = () => {
 						<span
 							className="button button-danger button-outline"
 							title="Delete Listing"
-							onClick={removeListing}
+							onClick={_removeListing}
 						>
 							<i className="fa fa-trash"></i> Delete
 						</span>

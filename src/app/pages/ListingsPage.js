@@ -7,11 +7,16 @@ import listingsApi from "../api/listings";
 import settings from "../config/settings";
 import useApi from "../hooks/useApi";
 import Spinner from "../components/layout/Spinner";
+import Alert from "../components/Alert";
 
 const ListingsPage = () => {
-	const { data: listings, error, loading, request: getListings } = useApi(
-		listingsApi.getListings
-	);
+	const {
+		data: listings,
+		error,
+		errorMessage,
+		loading,
+		request: getListings,
+	} = useApi(listingsApi.getListings);
 
 	useEffect(() => {
 		getListings();
@@ -20,6 +25,7 @@ const ListingsPage = () => {
 	return (
 		<>
 			{loading && <Spinner loading={loading} />}
+			{error && <Alert message={errorMessage} />}
 			{listings && (
 				<div className="listings">
 					<h1 className="listings__header">Discover our latest listings!</h1>
