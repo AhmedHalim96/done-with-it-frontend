@@ -35,7 +35,7 @@ const ListingsPage = () => {
 							items={listings}
 							className="listings__feed"
 							columnWidth={450}
-							columnGutter={10}
+							columnGutter={20}
 							render={({ i, data: listing, width }) => (
 								<Link
 									to={"/listings/" + listing.id}
