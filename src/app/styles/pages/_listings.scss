@@ -11,6 +11,7 @@
 		font-size: 3rem;
 		display: inline-block;
 		margin-left: auto;
+		margin-bottom: 3rem;
 		@include center-x;
 		@include partial-line-after;
 	}
