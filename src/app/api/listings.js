@@ -2,7 +2,10 @@ import client from "./client";
 
 const endpoint = "/listings";
 
-const getListings = () => client.get(endpoint);
+const getListings = pageNumber => {
+	console.log(pageNumber);
+	return client.get(endpoint + "?page=" + pageNumber);
+};
 
 const getListingDetails = listingId => client.get(endpoint + "/" + listingId);
 

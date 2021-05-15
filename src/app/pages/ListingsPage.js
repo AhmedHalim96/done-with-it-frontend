@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Masonry } from "masonic";
 
 import Card from "../components/Card";
@@ -18,20 +18,69 @@ const ListingsPage = () => {
 		request: getListings,
 	} = useApi(listingsApi.getListings);
 
+	const { pageNumber = 1 } = useParams();
+
+	const [meta, setMeta] = useState(null);
+
+	const _getListings = async () => {
+		const res = await getListings(pageNumber);
+		setMeta(res.data.meta);
+	};
+
 	useEffect(() => {
-		getListings();
-	}, []);
+		_getListings();
+	}, [pageNumber]);
 
 	return (
 		<>
 			{loading && <Spinner loading={loading} />}
 			{error && <Alert message={errorMessage} />}
-			{listings && (
+			{listings && meta && (
 				<div className="listings">
 					<h1 className="listings__header">Discover our latest listings!</h1>
+					<ul className="listings__pagination">
+						{meta.current_page !== 1 && (
+							<li className="listings__paginationItem">
+								<Link
+									to={"/feed/page/" + (meta.current_page - 1)}
+									className="listings__paginationLink"
+								>
+									&laquo; Prev
+								</Link>
+							</li>
+						)}
+
+						{[...Array(meta.last_page).keys()].map(i => {
+							return (
+								<li
+									className={`listings__paginationItem ${
+										meta.current_page === i + 1 ? "active" : ""
+									}`}
+									key={i}
+								>
+									<Link
+										to={"/feed/page/" + (i + 1)}
+										className="listings__paginationLink"
+									>
+										{i + 1}
+									</Link>
+								</li>
+							);
+						})}
+						{meta.to !== meta.current_page && (
+							<li className="listings__paginationItem">
+								<Link
+									to={"/feed/page/" + (meta.current_page + 1)}
+									className="listings__paginationLink"
+								>
+									Next &raquo;
+								</Link>
+							</li>
+						)}
+					</ul>
 					<div className="listings__feedWrapper">
-						{" "}
 						<Masonry
+							key={pageNumber}
 							items={listings}
 							className="listings__feed"
 							columnWidth={450}
