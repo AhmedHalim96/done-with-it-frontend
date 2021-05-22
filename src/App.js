@@ -12,7 +12,7 @@ import AuthContext from "./app/auth/context";
 const App = () => {
 	const [sidebarState, setSidebarState] = useState(false);
 	const [scrolling, setScrolling] = useState(true);
-	const [authenticated, setAuthenticated] = useState(true);
+	const [authenticated, setAuthenticated] = useState(false);
 
 	return (
 		<div className={`app ${!scrolling ? "u-no-scrolling" : ""}`}>
