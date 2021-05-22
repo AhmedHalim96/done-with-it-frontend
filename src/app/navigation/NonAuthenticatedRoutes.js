@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
+import ListingDetailsPage from "../pages/ListingDetailsPage";
 import ListingsPage from "../pages/ListingsPage";
 
 import LoginPage from "../pages/LoginPage";
@@ -22,8 +23,11 @@ const NonAuthenticatedRoutes = () => {
 			<Route path={routes.WELCOME}>
 				<WelcomePage />
 			</Route>
+			<Route path={routes.LISTING_DETAILS}>
+				<ListingDetailsPage />
+			</Route>
 			<Route path="/">
-				<WelcomePage />
+				<ListingsPage />
 			</Route>
 		</Switch>
 	);
