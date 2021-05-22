@@ -144,4 +144,20 @@
 			clip-path: polygon(100% 0%, 0 0%, 50% 100%);
 		}
 	}
+
+	&__submitErrorsContainer {
+		padding-left: 2rem;
+	}
+
+	&__submitErrorsHeader {
+		color: $color-red;
+		text-decoration: underline;
+	}
+
+	&__submitErrorsList {
+		list-style: none;
+		color: $color-red;
+	}
+	&__submitErrorsItem {
+	}
 }
