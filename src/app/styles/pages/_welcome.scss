@@ -4,6 +4,7 @@
 	min-height: $min-page-height;
 	overflow-x: hidden;
 	width: 100%;
+	margin-top: -2rem;
 	@include flex-center;
 
 	&__centerBox {

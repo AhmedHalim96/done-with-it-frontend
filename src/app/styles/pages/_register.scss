@@ -3,6 +3,7 @@
 	height: 100%;
 	width: 100%;
 	min-height: $min-page-height;
+	margin-top: -2rem;
 	overflow-x: hidden;
 	@include flex-center;
 
