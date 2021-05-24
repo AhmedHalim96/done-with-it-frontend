@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { Link, useParams, useHistory } from "react-router-dom";
 
 import Spinner from "../components/layout/Spinner";
+import AuthContext from "../auth/context";
 import listingsApi from "../api/listings";
 import useApi from "../hooks/useApi";
 import settings from "../config/settings";
@@ -34,6 +35,8 @@ const ListingDetailsPage = () => {
 		loading: deleteListingLoading,
 		request: deleteListing,
 	} = useApi(listingsApi.removeListing);
+
+	const { isAuthenticated } = useContext(AuthContext);
 
 	const _error = getListingError || deleteListingError;
 	const _loading = getListingLoading || deleteListingLoading;
@@ -68,20 +71,25 @@ const ListingDetailsPage = () => {
 						>
 							<i className="fa fa-shopping-cart"></i> +
 						</span>
-						<Link
-							to={"/update/" + listing.id}
-							className="button button-secondary button-outline"
-							title="Update Listing"
-						>
-							<i className="fa fa-pencil"></i> Edit
-						</Link>
-						<span
-							className="button button-danger button-outline"
-							title="Delete Listing"
-							onClick={_removeListing}
-						>
-							<i className="fa fa-trash"></i> Delete
-						</span>
+
+						{isAuthenticated && (
+							<>
+								<Link
+									to={"/update/" + listing.id}
+									className="button button-secondary button-outline"
+									title="Update Listing"
+								>
+									<i className="fa fa-pencil"></i> Edit
+								</Link>
+								<span
+									className="button button-danger button-outline"
+									title="Delete Listing"
+									onClick={_removeListing}
+								>
+									<i className="fa fa-trash"></i> Delete
+								</span>
+							</>
+						)}
 					</div>
 					<p className="listingDetails__category">
 						Category:{" "}
