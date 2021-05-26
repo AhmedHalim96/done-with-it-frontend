@@ -33,9 +33,12 @@ const LoginPage = () => {
 
 	const _login = async _user => {
 		const res = await loginUser(_user);
-		setAuthenticated(true);
-		setUser(res.data);
-		AuthStorage.storeUser(res.data);
+
+		if (res.ok) {
+			setAuthenticated(true);
+			setUser(res.data);
+			AuthStorage.storeUser(res.data);
+		}
 	};
 
 	return (
