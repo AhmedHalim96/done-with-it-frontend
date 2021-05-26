@@ -8,11 +8,20 @@ import AuthenticatedRoutes from "./app/navigation/AuthenticatedRoutes";
 import NonAuthenticatedRoutes from "./app/navigation/NonAuthenticatedRoutes";
 import LayoutContext from "./app/layout/context";
 import AuthContext from "./app/auth/context";
+import AuthStorage from "./app/auth/storage";
 
 const App = () => {
 	const [sidebarState, setSidebarState] = useState(false);
 	const [scrolling, setScrolling] = useState(true);
 	const [authenticated, setAuthenticated] = useState(false);
+	const [user, setUser] = useState(null);
+
+	React.useEffect(() => {
+		const fetchedUser = AuthStorage.getUser();
+		if (!fetchedUser) return;
+		setUser(fetchedUser);
+		setAuthenticated(true);
+	}, []);
 
 	return (
 		<div className={`app ${!scrolling ? "u-no-scrolling" : ""}`}>
@@ -29,6 +38,8 @@ const App = () => {
 					value={{
 						isAuthenticated: authenticated,
 						setAuthenticated,
+						user,
+						setUser,
 					}}
 				>
 					<Navbar />
