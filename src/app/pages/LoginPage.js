@@ -12,6 +12,8 @@ import Submit from "../components/forms/Submit";
 import settings from "../config/settings";
 import useApi from "../hooks/useApi";
 import routes from "../navigation/routes";
+import AuthContext from "../auth/context";
+import AuthStorage from "../auth/storage";
 
 const validationSchema = Yup.object().shape({
 	email: Yup.string().email().label("Email").required(),
@@ -20,13 +22,21 @@ const validationSchema = Yup.object().shape({
 
 const LoginPage = () => {
 	const {
-		data: user,
 		error,
 		errors,
 		errorMessage,
 		loading,
 		request: loginUser,
 	} = useApi(usersApi.loginUser);
+
+	const { setAuthenticated, setUser } = React.useContext(AuthContext);
+
+	const _login = async _user => {
+		const res = await loginUser(_user);
+		setAuthenticated(true);
+		setUser(res.data);
+		AuthStorage.storeUser(res.data);
+	};
 
 	return (
 		<>
@@ -42,7 +52,7 @@ const LoginPage = () => {
 					<Branding />
 					<Form
 						initialValues={{ email: "", password: "" }}
-						onSubmit={loginUser}
+						onSubmit={_login}
 						validationSchema={validationSchema}
 					>
 						<FormField name="email" type="text" label="Email" block />
