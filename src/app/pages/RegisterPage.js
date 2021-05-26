@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import * as Yup from "yup";
 
 import Spinner from "../components/layout/Spinner";
@@ -31,6 +31,14 @@ const RegisterPage = () => {
 		loading,
 		request: registerUser,
 	} = useApi(usersApi.registerUser);
+
+	const redirectTo = useHistory().push;
+
+	const _register = async user => {
+		await registerUser(user);
+		redirectTo("/login");
+	};
+
 	return (
 		<>
 			{loading && <Spinner loading={loading} backdrop={loading} />}
@@ -49,7 +57,7 @@ const RegisterPage = () => {
 							password: "",
 							c_password: "",
 						}}
-						onSubmit={registerUser}
+						onSubmit={_register}
 						validationSchema={validationSchema}
 					>
 						<FormField name="name" type="text" label="Name" block />
