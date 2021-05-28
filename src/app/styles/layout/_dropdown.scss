@@ -28,9 +28,7 @@
 		width: 100%;
 		list-style: none;
 		color: $primary-color;
-		&-hidden {
-			display: none;
-		}
+		border-radius: 0.2rem;
 	}
 
 	&__item {
@@ -41,16 +39,9 @@
 		margin-bottom: 0.2rem;
 		font-size: 1.6rem;
 		cursor: pointer;
-		&::after {
-			content: "";
-			display: block;
+		&:first-child,
+		&:nth-child(2n + 3) {
 			background: $color-light-grey;
-			width: 100%;
-			height: 0.1rem;
-		}
-
-		&:last-child::after {
-			display: none;
 		}
 	}
 }
