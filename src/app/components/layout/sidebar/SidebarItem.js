@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import LayoutContext from "../../layout/context";
+import LayoutContext from "../../../layout/context";
 
 const SidebarItem = ({ to, title }) => {
 	const { closeSidebar } = useContext(LayoutContext);

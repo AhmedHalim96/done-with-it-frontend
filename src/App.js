@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import "./app/styles/App.scss";
 
 import Navbar from "./app/components/layout/Navbar";
-import Sidebar from "./app/components/layout/Sidebar";
+import Sidebar from "./app/components/layout/sidebar";
 import AuthenticatedRoutes from "./app/navigation/AuthenticatedRoutes";
 import NonAuthenticatedRoutes from "./app/navigation/NonAuthenticatedRoutes";
 import LayoutContext from "./app/layout/context";

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import LayoutContext from "../../layout/context";
-import Backdrop from "./Backdrop";
+import LayoutContext from "../../../layout/context";
+import Backdrop from "../Backdrop";
 import SidebarItemList from "./SidebarItemList";
 
 const Sidebar = ({ state, close }) => {
