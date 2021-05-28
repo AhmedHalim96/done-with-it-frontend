@@ -2,17 +2,14 @@ import React, { useContext } from "react";
 import AuthenticationContext from "../../../auth/context";
 import routes from "../../../navigation/routes";
 import SidebarItem from "./SidebarItem";
+import SidebarUser from "./SidebarUser";
 
 const SidebarItemList = ({ className = "" }) => {
-	const { isAuthenticated, setAuthenticated } = useContext(
-		AuthenticationContext
-	);
-
-	const { user } = useContext(AuthenticationContext);
+	const { isAuthenticated } = useContext(AuthenticationContext);
 
 	return (
 		<ul className={"sidebar__itemList " + className}>
-			{isAuthenticated && <SidebarItem to={"#!"} title={user.name} />}
+			{isAuthenticated && <SidebarUser />}
 			<SidebarItem to="/" title="Home" />
 			{!isAuthenticated && <SidebarItem to={routes.LOGIN} title="Login" />}
 			{!isAuthenticated && (

@@ -29,11 +29,15 @@
 		list-style: none;
 	}
 
-	&__item {
+	&__item,
+	&__user {
 		background-color: $primary-color;
 		margin-bottom: 1rem;
 		padding: 1rem;
 		text-align: center;
+	}
+
+	&__item {
 		& > a {
 			color: $color-white;
 		}
@@ -59,5 +63,9 @@
 			width: 100%;
 			font-size: 2rem;
 		}
+	}
+
+	&__user {
+		color: white;
 	}
 }
