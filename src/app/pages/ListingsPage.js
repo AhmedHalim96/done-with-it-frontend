@@ -38,46 +38,48 @@ const ListingsPage = () => {
 			{listings && meta && (
 				<div className="listings">
 					<h1 className="listings__header">Discover our latest listings!</h1>
-					<ul className="listings__pagination">
-						{meta.current_page !== 1 && (
-							<li className="listings__paginationItem">
-								<Link
-									to={"/feed/page/" + (meta.current_page - 1)}
-									className="listings__paginationLink"
-								>
-									&laquo; Prev
-								</Link>
-							</li>
-						)}
-
-						{[...Array(meta.last_page).keys()].map(i => {
-							return (
-								<li
-									className={`listings__paginationItem ${
-										meta.current_page === i + 1 ? "active" : ""
-									}`}
-									key={i}
-								>
+					{meta.last_page !== 1 && (
+						<ul className="listings__pagination">
+							{meta.current_page !== 1 && (
+								<li className="listings__paginationItem">
 									<Link
-										to={"/feed/page/" + (i + 1)}
+										to={"/feed/page/" + (meta.current_page - 1)}
 										className="listings__paginationLink"
 									>
-										{i + 1}
+										&laquo; Prev
 									</Link>
 								</li>
-							);
-						})}
-						{meta.to !== meta.current_page && (
-							<li className="listings__paginationItem">
-								<Link
-									to={"/feed/page/" + (meta.current_page + 1)}
-									className="listings__paginationLink"
-								>
-									Next &raquo;
-								</Link>
-							</li>
-						)}
-					</ul>
+							)}
+
+							{[...Array(meta.last_page).keys()].map(i => {
+								return (
+									<li
+										className={`listings__paginationItem ${
+											meta.current_page === i + 1 ? "active" : ""
+										}`}
+										key={i}
+									>
+										<Link
+											to={"/feed/page/" + (i + 1)}
+											className="listings__paginationLink"
+										>
+											{i + 1}
+										</Link>
+									</li>
+								);
+							})}
+							{meta.last_page !== meta.current_page && (
+								<li className="listings__paginationItem">
+									<Link
+										to={"/feed/page/" + (meta.current_page + 1)}
+										className="listings__paginationLink"
+									>
+										Next &raquo;
+									</Link>
+								</li>
+							)}
+						</ul>
+					)}
 					<div className="listings__feedWrapper">
 						<Masonry
 							key={pageNumber}
