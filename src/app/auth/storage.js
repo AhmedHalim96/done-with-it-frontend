@@ -1,4 +1,5 @@
 const storeUser = user => {
+	storeToken(user.token);
 	user = JSON.stringify(user);
 	localStorage.setItem("user", user);
 };
@@ -12,9 +13,12 @@ const removeUser = () => {
 };
 
 const getToken = () => {
-	return getUser().token;
+	return localStorage.getItem("authToken");
 };
 
+const storeToken = token => {
+	localStorage.setItem("authToken", token);
+};
 const AuthStorage = { storeUser, getUser, removeUser, getToken };
 
 export default AuthStorage;
