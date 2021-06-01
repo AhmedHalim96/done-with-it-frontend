@@ -11,6 +11,10 @@ const removeUser = () => {
 	localStorage.removeItem("user");
 };
 
-const AuthStorage = { storeUser, getUser, removeUser };
+const getToken = () => {
+	return getUser().token;
+};
+
+const AuthStorage = { storeUser, getUser, removeUser, getToken };
 
 export default AuthStorage;
