@@ -14,7 +14,11 @@ const SidebarUser = () => {
 	return (
 		<DropDownMenu
 			className="sidebar__user"
-			header={user.name}
+			header={
+				<>
+					<i className="fa fa-user"></i> {user.name}
+				</>
+			}
 			items={[
 				"PLACEHOLDER",
 				"PLACEHOLDER",
