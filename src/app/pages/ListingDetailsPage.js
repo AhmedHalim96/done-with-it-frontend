@@ -9,13 +9,6 @@ import settings from "../config/settings";
 import ImageSlider from "../components/ImageSlider";
 import Alert from "../components/Alert";
 
-const user = {
-	id: 2,
-	name: "Ahmed Halim",
-	avatar: "http://192.168.1.111:8000/storage/listings/jacket-photo.jpg",
-	listing: 12,
-};
-
 const ListingDetailsPage = () => {
 	const listingId = useParams().listingId;
 	const redirect = useHistory().push;
@@ -106,7 +99,7 @@ const ListingDetailsPage = () => {
 					<p className="listingDetails__seller u-mb-2">
 						by{" "}
 						<Link to="#!" className="link link-primary">
-							{user.name}
+							{listing.user.name}
 						</Link>
 					</p>
 

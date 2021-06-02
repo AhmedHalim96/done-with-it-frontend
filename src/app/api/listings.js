@@ -3,7 +3,6 @@ import client from "./client";
 const endpoint = "/listings";
 
 const getListings = pageNumber => {
-	console.log(pageNumber);
 	return client.get(endpoint + "?page=" + pageNumber);
 };
 
