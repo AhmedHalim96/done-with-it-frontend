@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import "./app/styles/App.scss";
 
@@ -13,14 +13,15 @@ import AuthStorage from "./app/auth/storage";
 const App = () => {
 	const [sidebarState, setSidebarState] = useState(false);
 	const [scrolling, setScrolling] = useState(true);
-	const [authenticated, setAuthenticated] = useState(false);
+	const [authenticated, setAuthenticated] = useState(
+		AuthStorage.getUser() ? true : false
+	);
 	const [user, setUser] = useState(null);
 
-	React.useEffect(() => {
+	useEffect(() => {
 		const fetchedUser = AuthStorage.getUser();
 		if (!fetchedUser) return;
 		setUser(fetchedUser);
-		setAuthenticated(true);
 	}, []);
 
 	return (
