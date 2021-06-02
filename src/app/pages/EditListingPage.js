@@ -67,7 +67,6 @@ const EditListingPage = () => {
 	} = useApi(listingsApi.getListingDetails);
 
 	const {
-		data: updatedListing,
 		errorMessage: updateListingErrorMessage,
 		error: updateListingError,
 		loading: updateListingLoading,
@@ -78,6 +77,7 @@ const EditListingPage = () => {
 	const _updateListing = async values => {
 		const updatedListing = {};
 
+		// Adding changed fields
 		if (values.title !== listing.title) updatedListing.title = values.title;
 
 		if (values.price !== listing.price) updatedListing.price = values.price;
@@ -98,7 +98,11 @@ const EditListingPage = () => {
 			return alert("Nothing Changed");
 
 		updatedListing.id = listing.id;
-		await editListing(updatedListing);
+
+		// Sending the request
+		const res = await editListing(updatedListing);
+		if (!res.ok) return;
+
 		redirect("/listings/" + listingId);
 	};
 
