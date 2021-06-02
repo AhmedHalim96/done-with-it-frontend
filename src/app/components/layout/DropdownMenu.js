@@ -16,7 +16,9 @@ const DropdownMenu = ({ className = "", header, items }) => {
 			{opened && (
 				<ul className="dropdown__list">
 					{items.map((item, index) => (
-						<li className="dropdown__item">{item}</li>
+						<li className="dropdown__item" key={index}>
+							{item}
+						</li>
 					))}
 				</ul>
 			)}
