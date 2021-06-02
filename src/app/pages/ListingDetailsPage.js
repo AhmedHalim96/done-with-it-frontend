@@ -29,7 +29,7 @@ const ListingDetailsPage = () => {
 		request: deleteListing,
 	} = useApi(listingsApi.removeListing);
 
-	const { isAuthenticated } = useContext(AuthContext);
+	const { isAuthenticated, user } = useContext(AuthContext);
 
 	const _error = getListingError || deleteListingError;
 	const _loading = getListingLoading || deleteListingLoading;
@@ -68,7 +68,7 @@ const ListingDetailsPage = () => {
 							<i className="fa fa-shopping-cart"></i> +
 						</span>
 
-						{isAuthenticated && (
+						{isAuthenticated && user.id === listing.user.id && (
 							<>
 								<Link
 									to={"/update/" + listing.id}
