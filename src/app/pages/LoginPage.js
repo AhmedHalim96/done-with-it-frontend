@@ -60,6 +60,7 @@ const LoginPage = () => {
 					>
 						<FormField name="email" type="text" label="Email" block />
 						<FormField name="password" type="password" label="Password" block />
+						<input type="submit" hidden />
 						<SubmitErrorList
 							error={error}
 							errorMessage={errorMessage}

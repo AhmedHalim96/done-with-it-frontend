@@ -69,6 +69,7 @@ const RegisterPage = () => {
 							label="Confirm Password"
 							block
 						/>
+						<input type="submit" hidden />
 						<SubmitErrorList
 							error={error}
 							errorMessage={errorMessage}
