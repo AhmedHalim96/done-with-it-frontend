@@ -4,8 +4,7 @@ import "./app/styles/App.scss";
 
 import Navbar from "./app/components/layout/Navbar";
 import Sidebar from "./app/components/layout/sidebar";
-import AuthenticatedRoutes from "./app/navigation/AuthenticatedRoutes";
-import NonAuthenticatedRoutes from "./app/navigation/NonAuthenticatedRoutes";
+import Routes from "./Routes";
 import LayoutContext from "./app/layout/context";
 import AuthContext from "./app/auth/context";
 import AuthStorage from "./app/auth/storage";
@@ -45,11 +44,7 @@ const App = () => {
 					<Navbar />
 					<Sidebar />
 					<main className="u-pt-2">
-						{authenticated ? (
-							<AuthenticatedRoutes />
-						) : (
-							<NonAuthenticatedRoutes />
-						)}
+						<Routes />
 					</main>
 				</AuthContext.Provider>
 			</LayoutContext.Provider>
