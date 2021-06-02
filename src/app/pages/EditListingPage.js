@@ -94,8 +94,9 @@ const EditListingPage = () => {
 		if (values.categoryId !== listing.category.id)
 			updatedListing.categoryId = values.categoryId;
 
+		// Redirect if nothing changes
 		if (Object.keys(updatedListing).length === 0)
-			return alert("Nothing Changed");
+			return redirect("/listings/" + listingId);
 
 		updatedListing.id = listing.id;
 
