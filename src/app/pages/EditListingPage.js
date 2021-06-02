@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import * as Yup from "yup";
 
 import listingsApi from "../api/listings";
+import AuthContext from "../auth/context";
 import useCategories from "../hooks/useCategories";
 import useApi from "../hooks/useApi";
 
@@ -58,6 +59,7 @@ const EditListingPage = () => {
 	const categories = useCategories();
 	const listingId = useParams().listingId;
 	const redirect = useHistory().push;
+	const { user } = useContext(AuthContext);
 	const {
 		data: listing,
 		error: getListingError,
@@ -74,6 +76,13 @@ const EditListingPage = () => {
 	} = useApi(listingsApi.updateListing);
 
 	const _error = getListingError || updateListingError;
+
+	const _getListing = async () => {
+		const {
+			data: { data: listing },
+		} = await getListing(listingId);
+		if (user.id !== listing.user.id) redirect("/");
+	};
 	const _updateListing = async values => {
 		const updatedListing = {};
 
@@ -108,7 +117,7 @@ const EditListingPage = () => {
 	};
 
 	useEffect(() => {
-		getListing(listingId);
+		_getListing();
 	}, []);
 
 	return (
