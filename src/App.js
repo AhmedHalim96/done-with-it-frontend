@@ -13,15 +13,14 @@ import AuthStorage from "./app/auth/storage";
 const App = () => {
 	const [sidebarState, setSidebarState] = useState(false);
 	const [scrolling, setScrolling] = useState(true);
-	const [authenticated, setAuthenticated] = useState(
-		AuthStorage.getUser() ? true : false
-	);
+	const [authenticated, setAuthenticated] = useState(false);
 	const [user, setUser] = useState(null);
 
 	useEffect(() => {
 		const fetchedUser = AuthStorage.getUser();
 		if (!fetchedUser) return;
 		setUser(fetchedUser);
+		setAuthenticated(true);
 	}, []);
 
 	return (
