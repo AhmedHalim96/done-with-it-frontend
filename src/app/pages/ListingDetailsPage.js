@@ -71,7 +71,7 @@ const ListingDetailsPage = () => {
 						{isAuthenticated && user.id === listing.user.id && (
 							<>
 								<Link
-									to={"/update/" + listing.id}
+									to={`/listings/${listing.id}/edit`}
 									className="button button-secondary button-outline"
 									title="Update Listing"
 								>

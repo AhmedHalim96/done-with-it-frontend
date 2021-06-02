@@ -14,12 +14,12 @@ const AuthenticatedRoutes = () => {
 				<CreateListingPage />
 			</Route>
 
-			<Route path={routes.LISTING_DETAILS}>
-				<ListingDetailsPage />
-			</Route>
-
 			<Route path={routes.EDIT_LISTING}>
 				<EditListingPage />
+			</Route>
+
+			<Route path={routes.LISTING_DETAILS}>
+				<ListingDetailsPage />
 			</Route>
 
 			<Route path={routes.FEED}>
