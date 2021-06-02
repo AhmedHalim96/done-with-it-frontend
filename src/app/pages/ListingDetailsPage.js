@@ -40,9 +40,12 @@ const ListingDetailsPage = () => {
 
 	const _error = getListingError || deleteListingError;
 	const _loading = getListingLoading || deleteListingLoading;
+
 	const _getListing = async () => await getListing(listingId);
 	const _removeListing = async () => {
-		await deleteListing(listingId);
+		const res = await deleteListing(listingId);
+		if (!res.ok) return;
+
 		redirect("/");
 	};
 
